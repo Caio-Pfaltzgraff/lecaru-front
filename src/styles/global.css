@@ -14,4 +14,7 @@
         0 0 20px #3CA6A6,
         0 0 40px #3CA6A6;
     }
+    .bg-home {
+        background-image: url('/src/assets/nossa_casa.png');
+    } 
 }

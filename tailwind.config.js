@@ -12,8 +12,14 @@ export default {
         'bege': '#F2E3D5'
       },
       fontFamily: {
-        'icones': ['Cormorant', 'serife'],
-        'padrao': ['inter', 'sans-serif']
+        'logo': ['Playfair Display', 'serif'],
+        'padrao': ['inter', 'sans-serif'],
+        'cursiva': ['Allura', 'cursive'],
+        'titulo': ['Merriweather', 'serif']
+      },
+      spacing: {
+        '73': '19rem',
+        '100': '25rem'
       }
     },
   },
