@@ -10,7 +10,8 @@ export default {
         azul: {
           escuro: '#00202D',
           claro: '#3CA6A6',
-        }
+        },
+        dourado: '#efb810'
       },
       fontFamily: {
         'logo': ['Playfair Display', 'serif'],
@@ -21,6 +22,9 @@ export default {
       spacing: {
         '73': '19rem',
         '100': '25rem'
+      },
+      width: {
+        '18': '4.5rem'
       }
     },
   },

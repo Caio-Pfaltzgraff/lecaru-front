@@ -20,9 +20,9 @@ const NavBar = () => {
         <div className='espacamento py-2 md:py-3 lg:py-4'>
           <div className="flex items-center justify-between">
             <div className="flex items-center ">
-              <div className="flex-shrink-0">
+              <h1 className="flex-shrink-0">
                 <Link to="/" className="logo">Lecaru</Link>
-              </div>
+              </h1>
             </div>
             <div className="hidden md:block">
               <div className="flex items-center md:gap-12 lg:gap-16 xl:gap-20">
@@ -42,7 +42,7 @@ const NavBar = () => {
             </div>
             <div className="md:hidden flex items-center">
               <button
-                className="inline-flex mr-2 items-center justify-center rounded-md text-bege text-3xl"
+                className="inline-flex mr-2 items-center justify-center rounded-md text-gray-100 text-3xl"
                 onClick={toggleMenu}
               >
                 {menuOpen ? <FaXmark /> : <FaBars />}
