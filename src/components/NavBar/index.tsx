@@ -1,9 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { FaXmark } from 'react-icons/fa6'
+import { Link, useLocation } from 'react-router-dom';
 
 const NavBar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+    const location = useLocation()
+
+    useEffect(() => {
+      setMenuOpen(false)
+    }, [location])
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -11,32 +17,32 @@ const NavBar = () => {
 
     return(
         <nav className='bg-azul-escuro'>
-        <div className='max-w-7xl mx-auto px-4 md:px-6  py-2 md:py-4'>
+        <div className='espacamento py-2 md:py-3 lg:py-4'>
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center ">
               <div className="flex-shrink-0">
-                <a href="/" className="text-azul-claro font-logo font-semibold italic text-3xl md:text-4xl lg:text-5xl hover:logo-shadow">Lecaru</a>
+                <Link to="/" className="logo">Lecaru</Link>
               </div>
             </div>
             <div className="hidden md:block">
-              <div className="flex items-center md:gap-12">
-                <a href="/" className="text-bege font-semibold text-xl lg:text-2xl hover:text-azul-claro border-b-2 border-azul-claro">
+              <div className="flex items-center md:gap-12 lg:gap-16 xl:gap-20">
+                <Link to="/" className={`navLink ${location.pathname === '/' ? 'border-b-2 border-azul-claro' : ''}`}>
                   Home
-                </a>
-                <a href="/" className="text-bege font-semibold text-xl lg:text-2xl hover:text-azul-claro">
+                </Link>
+                <Link to="/sobre" className={`navLink ${location.pathname === '/sobre' ? 'border-b-2 border-azul-claro' : ''}`}>
                   Sobre
-                </a>
-                <a href="/" className="text-bege font-semibold text-xl lg:text-2xl hover:text-azul-claro">
+                </Link>
+                <Link to="/cardapio" className={`navLink ${location.pathname === '/cardapio' ? 'border-b-2 border-azul-claro' : ''}`}>
                   Cardápio
-                </a>
-                <a href="/" className="text-bege font-semibold text-xl lg:text-2xl hover:text-azul-claro">
+                </Link>
+                <Link to="/unidades" className={`navLink ${location.pathname === '/unidades' ? 'border-b-2 border-azul-claro' : ''}`}>
                   Unidades
-                </a>
+                </Link>
               </div>
             </div>
             <div className="md:hidden flex items-center">
               <button
-                className="inline-flex items-center justify-center p-2 rounded-md text-bege text-3xl"
+                className="inline-flex mr-2 items-center justify-center rounded-md text-bege text-3xl"
                 onClick={toggleMenu}
               >
                 {menuOpen ? <FaXmark /> : <FaBars />}
@@ -46,19 +52,19 @@ const NavBar = () => {
         </div>
         {menuOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-4 sm:px-3">
-              <a href="/" className="text-azul-claro font-semibold text-xl block text-center hover:text-azul-claro">
+            <div className="px-2 pt-2 pb-3 space-y-5 sm:px-3">
+              <Link to="/" className={`navLinkMobile ${location.pathname === '/' ? 'text-azul-claro' : ''}`}>
                 Home
-              </a>
-              <a href="/" className="text-bege font-semibold text-xl block text-center hover:text-azul-claro">
+              </Link>
+              <Link to="/sobre" className={`navLinkMobile ${location.pathname === '/sobre' ? 'text-azul-claro' : ''}`}>
                 Sobre
-              </a>
-              <a href="/" className="text-bege font-semibold text-xl block text-center hover:text-azul-claro">
+              </Link>
+              <Link to="/cardapio" className={`navLinkMobile ${location.pathname === '/cardapio' ? 'text-azul-claro' : ''}`}>
                 Cardápio
-              </a>
-              <a href="/" className="text-bege font-semibold text-xl block text-center hover:text-azul-claro">
+              </Link>
+              <Link to="/unidades" className={`navLinkMobile ${location.pathname === '/unidades' ? 'text-azul-claro' : ''}`}>
                 Unidades
-              </a>
+              </Link>
             </div>
           </div>
         )}
