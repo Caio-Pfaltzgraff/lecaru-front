@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Sobre from './pages/Sobre'
 import Cardapio from './pages/Cardapio'
 import Unidades from './pages/Unidades'
+import Footer from './components/Footer'
 
 const AppRouter = () => {
     return (
@@ -18,11 +19,7 @@ const AppRouter = () => {
                     <Route path='unidades' element={<Unidades />} />
                 </Route>
             </Routes>
-            <footer className="absolute bottom-0 left-1/2 -translate-x-1/2  bg-orange-300 w-full h-11">
-                <div className="flex justify-center items-center">
-                    <p>Desenvolvido por Caio</p>
-                </div>
-            </footer>
+            <Footer />
         </BrowserRouter>
     )
 }

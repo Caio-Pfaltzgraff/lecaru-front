@@ -18,7 +18,7 @@ const NavBar = () => {
     return(
         <nav className='bg-azul-escuro'>
         <div className='espacamento py-2 md:py-3 lg:py-4'>
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between">
             <div className="flex items-center ">
               <div className="flex-shrink-0">
                 <Link to="/" className="logo">Lecaru</Link>

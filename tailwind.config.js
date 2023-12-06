@@ -7,9 +7,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        'azul-escuro': '#00202D',
-        'azul-claro': '#3CA6A6',
-        'bege': '#F2E3D5'
+        azul: {
+          escuro: '#00202D',
+          claro: '#3CA6A6',
+        }
       },
       fontFamily: {
         'logo': ['Playfair Display', 'serif'],

@@ -5,10 +5,10 @@ const DefaultPage = ({children} : {children?: React.ReactNode}) => {
   return (
     <>
       <Banner />
-      <div className="espacamento">
+      <main className="espacamento flex flex-col gap-4 my-4">
         <Outlet />
         {children}
-      </div>
+      </main>
     </>
   );
 };
