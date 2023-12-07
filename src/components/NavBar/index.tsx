@@ -26,16 +26,16 @@ const NavBar = () => {
             </div>
             <div className="hidden md:block">
               <div className="flex items-center md:gap-12 lg:gap-16 xl:gap-20">
-                <Link to="/" className={`navLink ${location.pathname === '/' ? 'border-b-2 border-azul-claro' : ''}`}>
+                <Link to="/" className={`navLink ${location.pathname === '/' ? 'border-b-2 border-dourado' : ''}`}>
                   Home
                 </Link>
-                <Link to="/sobre" className={`navLink ${location.pathname === '/sobre' ? 'border-b-2 border-azul-claro' : ''}`}>
+                <Link to="/sobre" className={`navLink ${location.pathname === '/sobre' ? 'border-b-2 border-dourado' : ''}`}>
                   Sobre
                 </Link>
-                <Link to="/cardapio" className={`navLink ${location.pathname === '/cardapio' ? 'border-b-2 border-azul-claro' : ''}`}>
+                <Link to="/cardapio" className={`navLink ${location.pathname === '/cardapio' ? 'border-b-2 border-dourado' : ''}`}>
                   Cardápio
                 </Link>
-                <Link to="/unidades" className={`navLink ${location.pathname === '/unidades' ? 'border-b-2 border-azul-claro' : ''}`}>
+                <Link to="/unidades" className={`navLink ${location.pathname === '/unidades' ? 'border-b-2 border-dourado' : ''}`}>
                   Unidades
                 </Link>
               </div>

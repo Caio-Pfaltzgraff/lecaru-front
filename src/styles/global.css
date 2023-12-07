@@ -39,4 +39,9 @@
     .bg-home {
         background-image: url('/src/assets/nossa_casa.png');
     } 
+
+    .image-history {
+        background-image: url('/src/assets/historia.jpg');
+        @apply bg-cover bg-no-repeat
+    }
 }
