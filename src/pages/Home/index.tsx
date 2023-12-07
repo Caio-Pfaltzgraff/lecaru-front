@@ -2,6 +2,7 @@ import Quality from "./Quality"
 import textos from '../../data/history.json'
 import { Link } from "react-router-dom"
 import Title from "./Title"
+import SugestionCard from "./SugestionCard"
 
 const Home = () => {
     return (  
@@ -44,6 +45,32 @@ const Home = () => {
                 <Title>
                     Sugestões da casa
                 </Title>
+                <div className="flex flex-col gap-10">
+                    <SugestionCard 
+                        title="Nome do Prato"
+                        description="auctor et, saLorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum."
+                        urlImage="/src/assets/historia.jpg"
+                        tag="Carnes"
+                    />
+                    <SugestionCard 
+                        title="Nome do Prato"
+                        description="auctor et, saLorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum."
+                        urlImage="/src/assets/historia.jpg"
+                        tag="Hamburguers"
+                    />
+                    <SugestionCard 
+                        title="Nome do Prato"
+                        description="auctor et, saLorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum."
+                        urlImage="/src/assets/historia.jpg"
+                        tag="Massas"
+                    />                
+                    <SugestionCard 
+                        title="Nome do Prato"
+                        description="auctor et, saLorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum."
+                        urlImage="/src/assets/historia.jpg"
+                        tag="Sobremesas"
+                    />
+                </div>
             </section>
 
             <section className="mt-8">
