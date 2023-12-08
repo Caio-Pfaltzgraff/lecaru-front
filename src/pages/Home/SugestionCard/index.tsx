@@ -2,53 +2,32 @@ interface Props {
     urlImage: string;
     title: string;
     description: string;
-    tag: 'Carnes' | 'Massas' | 'Sobremesas' | 'Hamburguers'
+    pricing: number
 }
 
-const SugestionCard = ({description, tag, title, urlImage} : Props) => {
-    let color = ''
+const SugestionCard = ({description, pricing, title, urlImage} : Props) => {
     
-    switch(tag) {
-        case 'Carnes':
-            color = 'bg-black'
-            break
-        case 'Hamburguers':
-            color = 'bg-amber-500'
-            break
-        case 'Massas':
-            color = 'bg-red-500'
-            break
-
-        case 'Sobremesas':
-            color = 'bg-sky-500'
-            break
-        default:
-            color = 'bg-white'
-        
-    }
   return (
-    <div>
-        <div className="flex gap-3">
-            <div className="w-1/2">
-                <img 
-                    className="rounded-xl object-cover h-48"
-                    src={urlImage} alt="exemplo" 
-                />
+    <div className="mt-8 lg:mt-0 flex gap-3 hover:bg-gray-200 cursor-pointer p-3 rounded-lg lg:flex-grow lg:w-96 lg:justify-center xl:max-w-md shadow-lg border">
+        <div className="w-1/2">
+            <img 
+                className="rounded-xl object-cover w-full h-48 md:h-64 lg:h-52"
+                src={urlImage} alt="exemplo" 
+            />
+        </div>
+        <div className="w-1/2 flex flex-col gap-2 md:justify-center">
+            <h3 className="text-xl font-titulo font-semibold md:text-2xl text-red-600 line-clamp-2">
+                {title}
+            </h3>
+            <div>
+                <p className="text-sm font-medium line-clamp-5 md:text-base">
+                    {description}
+                </p>
             </div>
-            <div className="w-1/2 flex flex-col gap-2">
-                <h3 className=" text-xl font-titulo font-semibold">
-                    {title}
-                </h3>
-                <div>
-                    <p className="text-sm font-medium">
-                        {description}
-                    </p>
-                </div>
-                <div>
-                    <button className={`${color} text-white px-1 py-0.5 text-sm rounded-full`}>
-                        {tag}
-                    </button>
-                </div>
+            <div>
+                <h6 className="text-emerald-500 font-semibold text-lg md:text-xl">
+                   R$ {String(pricing.toFixed(2)).replace(".", ",")}
+                </h6>
             </div>
         </div>
     </div>

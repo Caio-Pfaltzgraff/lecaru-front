@@ -9,7 +9,7 @@ const Home = () => {
         <>
             <Quality/>
 
-            <section className="mt-2">
+            <section className="mt-8">
                 <Title>
                     Nossa história
                 </Title>
@@ -41,43 +41,79 @@ const Home = () => {
                 </div>
             </section>
 
-            <section className="mt-8">
+            <section className="mt-8 xl:mt-16">
                 <Title>
                     Sugestões da casa
                 </Title>
-                <div className="flex flex-col gap-10">
+                <div className="lg:flex lg:flex-wrap lg:gap-6">
                     <SugestionCard 
                         title="Nome do Prato"
-                        description="auctor et, saLorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum."
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa."
                         urlImage="/src/assets/historia.jpg"
-                        tag="Carnes"
+                        pricing={34.90}
                     />
                     <SugestionCard 
                         title="Nome do Prato"
-                        description="auctor et, saLorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum."
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa."
                         urlImage="/src/assets/historia.jpg"
-                        tag="Hamburguers"
+                        pricing={34.90}
                     />
                     <SugestionCard 
                         title="Nome do Prato"
-                        description="auctor et, saLorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum."
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa."
                         urlImage="/src/assets/historia.jpg"
-                        tag="Massas"
+                        pricing={34.90}
                     />                
                     <SugestionCard 
                         title="Nome do Prato"
-                        description="auctor et, saLorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum."
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa."
                         urlImage="/src/assets/historia.jpg"
-                        tag="Sobremesas"
+                        pricing={34.90}
                     />
+					<SugestionCard 
+                        title="Nome do Prato"
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa."
+                        urlImage="/src/assets/historia.jpg"
+                        pricing={34.90}
+                    />
+					<SugestionCard 
+                        title="Nome do Prato"
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa."
+                        urlImage="/src/assets/historia.jpg"
+                        pricing={34.90}
+                    />
+                </div>
+                <div className="flex justify-center pt-4 md:pt-6">
+                    <Link 
+                        className="bg-azul-escuro text-gray-200 lg:text-lg py-2 px-3 lg:py-3 lg:px-4 rounded-lg transition-transform duration-500  hover:scale-105"
+                        to="/cardapio"
+                    >
+                        Ver cardápio completo
+                    </Link>
                 </div>
             </section>
 
-            <section className="mt-8">
+            <section className="mt-8 xl:mt-16">
                 <Title>
-                    Unidades
+                    Reservas
                 </Title>
+                <div className="bg-home-reservas">
+					<div className="bg-azul-escuro bg-opacity-60 px-2 md:px-8 lg:px-16 xl:px-24 2xl:px-32  flex flex-col justify-center items-center text-center gap-4 lg:gap-8 xl:gap-10 2xl:gap-14 h-64 md:h-72 lg:h-80 xl:h-96 2xl:h-128">
+						<p className="text-white text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold">                        
+							Gostaria de reservar sua mesa para um dia especial ou até mesmo o nosso espaço de eventos?
+						</p>
+						<p className="text-white text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold">
+							Ligue para nossa central de atendimento através do número: (21) 99999-9999
+						</p>
+					</div>
+                </div>
             </section>
+
+			<section className="mt-8 xl:mt-16">
+				<Title>
+					Unidades
+				</Title>
+			</section>
         </>
     )
 }

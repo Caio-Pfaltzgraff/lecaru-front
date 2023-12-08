@@ -40,6 +40,11 @@
         background-image: url('/src/assets/nossa_casa.png');
     } 
 
+    .bg-home-reservas{
+        background-image: url('/src/assets/reservas.jpg');
+        @apply bg-cover bg-no-repeat bg-center
+    }
+
     .image-history {
         background-image: url('/src/assets/historia.jpg');
         @apply bg-cover bg-no-repeat

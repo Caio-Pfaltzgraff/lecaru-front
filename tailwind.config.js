@@ -22,6 +22,7 @@ export default {
       spacing: {
         '73': '19rem',
         '100': '25rem',
+        '128': '32rem',
         '153': '38.25rem'
       },
       width: {
