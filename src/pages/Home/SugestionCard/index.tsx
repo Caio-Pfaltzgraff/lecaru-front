@@ -8,10 +8,10 @@ interface Props {
 const SugestionCard = ({description, pricing, title, urlImage} : Props) => {
     
   return (
-    <div className="mt-8 lg:mt-0 flex gap-3 hover:bg-gray-200 cursor-pointer p-3 rounded-lg lg:flex-grow lg:w-96 lg:justify-center xl:max-w-md shadow-lg border">
+    <div className="mt-8 lg:mt-0 flex gap-3 hover:bg-gray-200 cursor-pointer p-3 rounded-lg lg:flex-grow lg:w-96 lg:justify-center xl:max-w-md shadow-lg border transition-transform hover:scale-105 duration-500">
         <div className="w-1/2">
             <img 
-                className="rounded-xl object-cover w-full h-48 md:h-64 lg:h-52"
+                className="rounded-xl object-cover object-center w-full md:max-w-xs lg:w-full h-48 md:h-64 lg:h-52"
                 src={urlImage} alt="exemplo" 
             />
         </div>

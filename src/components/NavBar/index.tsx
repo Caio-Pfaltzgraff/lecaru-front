@@ -16,10 +16,10 @@ const NavBar = () => {
     }
 
     return(
-        <nav className='bg-azul-escuro'>
-        <div className='espacamento py-2 md:py-3 lg:py-4'>
+        <nav className='bg-azul-escuro md:border-b-2 md:border-dourado'>
+        <div className='espacamento py-3 lg:py-4'>
           <div className="flex items-center justify-between">
-            <div className="flex items-center ">
+            <div className="-mt-1">
               <h1 className="flex-shrink-0">
                 <Link to="/" className="logo">Lecaru</Link>
               </h1>
@@ -42,7 +42,7 @@ const NavBar = () => {
             </div>
             <div className="md:hidden flex items-center">
               <button
-                className="inline-flex mr-2 items-center justify-center rounded-md text-gray-100 text-3xl"
+                className="inline-flex mr-2 items-center justify-center rounded-md text-gray-100 text-3xl hover:text-dourado"
                 onClick={toggleMenu}
               >
                 {menuOpen ? <FaXmark /> : <FaBars />}

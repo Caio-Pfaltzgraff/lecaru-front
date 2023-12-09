@@ -1,8 +1,9 @@
 import Quality from "./Quality"
 import textos from '../../data/history.json'
-import { Link } from "react-router-dom"
 import Title from "./Title"
 import SugestionCard from "./SugestionCard"
+import Button from "../../components/Button"
+import UnitCard from './UnitCard';
 
 const Home = () => {
     return (  
@@ -30,12 +31,7 @@ const Home = () => {
                             ))}
                         </div>
                         <div className="flex justify-center mt-2 lg:mt-6">
-                            <Link 
-                                to="/sobre"
-                                className="bg-azul-escuro text-gray-200 lg:text-lg py-2 px-3 lg:py-3 lg:px-4 rounded-lg transition-transform duration-500  hover:scale-105"
-                            >
-                                Ver mais
-                            </Link>
+                            <Button component="Link">Ver mais</Button>
                         </div>
                     </div>
                 </div>
@@ -49,47 +45,30 @@ const Home = () => {
                     <SugestionCard 
                         title="Nome do Prato"
                         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa."
-                        urlImage="/src/assets/historia.jpg"
+                        urlImage="src/assets/hamburguer.png"
                         pricing={34.90}
                     />
                     <SugestionCard 
                         title="Nome do Prato"
                         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa."
-                        urlImage="/src/assets/historia.jpg"
+                        urlImage="src/assets/hamburguer.png"
                         pricing={34.90}
                     />
                     <SugestionCard 
                         title="Nome do Prato"
                         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa."
-                        urlImage="/src/assets/historia.jpg"
+                        urlImage="src/assets/hamburguer.png"
                         pricing={34.90}
                     />                
                     <SugestionCard 
                         title="Nome do Prato"
                         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa."
-                        urlImage="/src/assets/historia.jpg"
-                        pricing={34.90}
-                    />
-					<SugestionCard 
-                        title="Nome do Prato"
-                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa."
-                        urlImage="/src/assets/historia.jpg"
-                        pricing={34.90}
-                    />
-					<SugestionCard 
-                        title="Nome do Prato"
-                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa."
-                        urlImage="/src/assets/historia.jpg"
+                        urlImage="src/assets/hamburguer.png"
                         pricing={34.90}
                     />
                 </div>
                 <div className="flex justify-center pt-4 md:pt-6">
-                    <Link 
-                        className="bg-azul-escuro text-gray-200 lg:text-lg py-2 px-3 lg:py-3 lg:px-4 rounded-lg transition-transform duration-500  hover:scale-105"
-                        to="/cardapio"
-                    >
-                        Ver cardápio completo
-                    </Link>
+                    <Button component="Link" to="/cardapio">Ver cardápio completo</Button>
                 </div>
             </section>
 
@@ -113,6 +92,23 @@ const Home = () => {
 				<Title>
 					Unidades
 				</Title>
+                <div className="lg:flex lg:gap-3">
+                    <UnitCard 
+                        title="Nova Iguaçu"
+                        adress="Av. Abílio Augusto Távora, 1111 - Luz, Nova Iguaçu - RJ, 26255-620"
+                    />
+                    <UnitCard 
+                        title="Barra da Tijuca"
+                        adress="Av. das Américas, 4666 - Barra da Tijuca, Rio de Janeiro - RJ, 22640-102"
+                    />
+                    <UnitCard 
+                        title="Cabo Frio"
+                        adress="Av. Henrique Terra, 1700 - Palmeiras, Cabo Frio - RJ, 28911-320"
+                    />
+                </div>
+                <div className="my-6 flex justify-center">
+                    <Button component="Link" to="/unidades">Ver mais</Button>
+                </div>
 			</section>
         </>
     )
