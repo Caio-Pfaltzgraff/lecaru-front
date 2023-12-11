@@ -27,6 +27,10 @@ export default {
       },
       width: {
         '18': '4.5rem'
+      },
+      backgroundImage: {
+        'home': "url('/src/assets/banners/banner-home.png')",
+        'sobre': "url('/src/assets/banners/banner-sobre.jpg')"
       }
     },
   },

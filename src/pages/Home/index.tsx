@@ -1,6 +1,6 @@
 import Quality from "./Quality"
 import textos from '../../data/history.json'
-import Title from "./Title"
+import Title from "../../components/Title"
 import SugestionCard from "./SugestionCard"
 import Button from "../../components/Button"
 import UnitCard from './UnitCard';
@@ -31,7 +31,7 @@ const Home = () => {
                             ))}
                         </div>
                         <div className="flex justify-center mt-2 lg:mt-6">
-                            <Button component="Link">Ver mais</Button>
+                            <Button component="Link" to="/sobre">Ver mais</Button>
                         </div>
                     </div>
                 </div>

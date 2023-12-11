@@ -21,7 +21,7 @@
     }
 
     .headerBanner {
-        @apply hidden md:flex items-center bg-home bg-gray-700 bg-cover bg-no-repeat bg-center md:h-60 lg:h-64 xl:h-73 2xl:h-100 w-full espacamento
+        @apply hidden md:flex items-center bg-gray-600 bg-cover bg-no-repeat bg-center md:h-60 lg:h-64 xl:h-73 2xl:h-100 w-full espacamento
     }
 
     .navLink {
@@ -35,10 +35,6 @@
     .espacamento {
         @apply px-3 md:px-6 lg:px-9 xl:px-12 2xl:px-14
     }
-
-    .bg-home {
-        background-image: url('/src/assets/nossa_casa.png');
-    } 
 
     .bg-home-reservas{
         background-image: url('/src/assets/reservas.jpg');
