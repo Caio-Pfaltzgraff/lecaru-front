@@ -17,16 +17,24 @@ const Sobre = () => {
         <>
             <section className='mt-6'>
                 <Title>Como Tudo Começou ?</Title>
-                <div className=''>
+                <div className='md:hidden'>
                     <div className='space-y-4'>
                         {conteudo.map((paragraph) => (
-                            <p className='text-sm md:text-base lg:text-lg md:border-l-4 md:pl-2 border-l-dourado' key={paragraph.id}>{paragraph.content}</p>
+                            <p className='text-sm md:text-base lg:text-lg border-l-4 pl-2 border-l-dourado' key={paragraph.id}>{paragraph.content}</p>
                         ))}
                     </div>
                     <div className='mt-4 flex justify-center'>
                         <Button component='button' aoClicar={toggleExibeTudo}>
                             {exibeTudo ? 'Fechar' : 'Mais'}
                         </Button>
+                    </div>
+                </div>
+
+                <div className='hidden md:block'>
+                    <div className='space-y-4'>
+                        {history.map((paragraph) => (
+                            <p className='text-sm md:text-base lg:text-lg md:border-l-4 md:pl-2 border-l-dourado' key={paragraph.id}>{paragraph.content}</p>
+                        ))}
                     </div>
                 </div>
             </section>
