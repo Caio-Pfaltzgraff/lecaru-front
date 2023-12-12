@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import Banner from "../Banner";
 
 const DefaultPage = ({children} : {children?: React.ReactNode}) => {
+
   return (
     <>
       <Banner />

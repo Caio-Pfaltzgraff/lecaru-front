@@ -4,12 +4,6 @@ import Unit from "./Unit"
 const Unidades = () => {
     return (
         <>
-            <div className="flex gap-4 mt-4">
-                <label>Busca</label>
-                <input type="text" />
-                <button>Rio de Janeiro</button>
-                <button>São Paulo</button>
-            </div>
             <section className="mt-5">
                 <Title>Rio de Janeiro</Title>
                 <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -31,13 +25,24 @@ const Unidades = () => {
                 </div>
             </section>
 
-            <section className="mt-5 mb-8">
+            <section className="mt-5">
                 <Title>São Paulo</Title>
                 <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     <Unit 
                         title="Bela Vista"
                         adress="Av. Paulista, 1230 - Bela Vista, São Paulo - SP, 01310-100"
                         tell="(11) 99393-9393"
+                    />
+                </div>
+            </section>
+
+            <section className="mt-5 mb-8">
+                <Title>Santa Catarina</Title>
+                <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                    <Unit 
+                        title="Balneário Camboriú"
+                        adress="Av. Santa Catarina, 1 - Estados, Balneário Camboriú - SC, 88339-005"
+                        tell="(47) 99494-9494"
                     />
                 </div>
             </section>

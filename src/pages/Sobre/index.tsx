@@ -15,12 +15,12 @@ const Sobre = () => {
     const conteudo = exibeTudo ? history : history.slice(0, 2)
     return (
         <>
-            <section className='mt-6'>
+            <section className='mt-8'>
                 <Title>Como Tudo Começou ?</Title>
                 <div className='md:hidden'>
                     <div className='space-y-4'>
                         {conteudo.map((paragraph) => (
-                            <p className='text-sm md:text-base lg:text-lg border-l-4 pl-2 border-l-dourado' key={paragraph.id}>{paragraph.content}</p>
+                            <p className='lg:text-lg border-l-4 pl-2 border-l-dourado' key={paragraph.id}>{paragraph.content}</p>
                         ))}
                     </div>
                     <div className='mt-4 flex justify-center'>
@@ -38,7 +38,7 @@ const Sobre = () => {
                     </div>
                 </div>
             </section>
-            <section className='mt-6'>
+            <section className='mt-8'>
                 <Title>Nossos valores e atitudes vão conquistar você:</Title>
                 <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-5'>
                     {values.map((value) => (
@@ -50,7 +50,7 @@ const Sobre = () => {
                     ))}
                 </div>
             </section>
-            <section className='my-6'>
+            <section className='my-8'>
                 <Title>Diferenciais</Title>
                 
                 <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-3 lg:gap-5'>

@@ -30,7 +30,8 @@ export default {
       },
       backgroundImage: {
         'home': "url('/src/assets/banners/banner-home.png')",
-        'sobre': "url('/src/assets/banners/banner-sobre.jpg')"
+        'sobre': "url('/src/assets/banners/banner-sobre.jpg')",
+        'unidades': "url('/src/assets/banners/banner-unidades.jpg')"
       }
     },
   },

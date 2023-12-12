@@ -6,6 +6,7 @@ import Sobre from './pages/Sobre'
 import Cardapio from './pages/Cardapio'
 import Unidades from './pages/Unidades'
 import Footer from './components/Footer'
+import ScrollToTop from './components/ScrollToTop'
 
 const AppRouter = () => {
     return (
@@ -20,6 +21,7 @@ const AppRouter = () => {
                 </Route>
             </Routes>
             <Footer />
+            <ScrollToTop />
         </BrowserRouter>
     )
 }

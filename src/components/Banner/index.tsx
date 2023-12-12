@@ -6,7 +6,7 @@ const Banner = () => {
   const backgroundHome = rota === "/" ? 'bg-home' : ""
   const backgroundSobre = rota === "/sobre" ? 'bg-sobre' : ""
   const backgroundCardapio = rota === "/cardapio" ? 'bg-home' : ""
-  const backgroundUnidades = rota === "/unidades" ? 'bg-home' : ""
+  const backgroundUnidades = rota === "/unidades" ? 'bg-unidades' : ""
 
   return(
     <header className={`headerBanner ${backgroundHome} ${backgroundSobre} ${backgroundCardapio} ${backgroundUnidades}`}>
