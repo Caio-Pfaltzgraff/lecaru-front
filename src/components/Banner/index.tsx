@@ -5,7 +5,7 @@ const Banner = () => {
   const rota = location.pathname
   const backgroundHome = rota === "/" ? 'bg-home' : ""
   const backgroundSobre = rota === "/sobre" ? 'bg-sobre' : ""
-  const backgroundCardapio = rota === "/cardapio" ? 'bg-home' : ""
+  const backgroundCardapio = rota === "/cardapio" ? 'bg-cardapio' : ""
   const backgroundUnidades = rota === "/unidades" ? 'bg-unidades' : ""
 
   return(

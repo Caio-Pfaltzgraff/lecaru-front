@@ -11,7 +11,8 @@ export default {
           escuro: '#00202D',
           claro: '#3CA6A6',
         },
-        dourado: '#efb810'
+        dourado: '#efb810',
+        vinho: '#a00f2d'
       },
       fontFamily: {
         'logo': ['Playfair Display', 'serif'],
@@ -31,7 +32,8 @@ export default {
       backgroundImage: {
         'home': "url('/src/assets/banners/banner-home.png')",
         'sobre': "url('/src/assets/banners/banner-sobre.jpg')",
-        'unidades': "url('/src/assets/banners/banner-unidades.jpg')"
+        'unidades': "url('/src/assets/banners/banner-unidades.jpg')",
+        'cardapio': "url('/src/assets/banners/banner-cardapio.jpg')"
       }
     },
   },
