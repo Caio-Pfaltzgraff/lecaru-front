@@ -1,6 +1,8 @@
 import Title from "../../components/Title"
 import { CgSearch } from 'react-icons/cg';
 import SectionFood from "./SectionFood";
+import filters from "../../data/categoriesMenu.json";
+import CardFilter from "./CardFilter";
 
 const Cardapio = () => {
     return (
@@ -27,84 +29,7 @@ const Cardapio = () => {
                     </div>
                     
                     <div className="mt-3 hidden sm:grid grid-cols-6 gap-2 lg:gap-4 max-w-3xl">
-                        <div className="h-36  p-2 flex flex-col gap-3 cursor-pointer">
-                            <div className="h-24">
-                                <img
-                                    className="rounded-lg aspect-auto" 
-                                    src="/src/assets/cardapio/carnes.jpg" alt="Prato de carne" 
-                                />
-                            </div>
-                            <div className="flex justify-center items-center">
-                                <p className="text-vinho lg:text-lg font-bold border-b-2 border-vinho">
-                                    Carnes
-                                </p>
-                            </div>
-                        </div>
-                        <div className="h-36  p-2 flex flex-col gap-3 cursor-pointer">
-                            <div className="h-24">
-                                <img
-                                    className="rounded-lg aspect-auto" 
-                                    src="/src/assets/cardapio/petiscos.png" alt="Prato de Petisco" 
-                                />
-                            </div>
-                            <div className="flex justify-center items-center">
-                                <p className="text-vinho lg:text-lg font-bold">
-                                    Petiscos
-                                </p>
-                            </div>
-                        </div>
-                        <div className="h-36  p-2 flex flex-col gap-3 cursor-pointer">
-                            <div className="h-24">
-                                <img
-                                    className="rounded-lg aspect-auto" 
-                                    src="/src/assets/cardapio/massas.jpg" alt="Prato de massas" 
-                                    />
-                            </div>
-                            <div className="flex justify-center items-center">
-                                <p className="text-vinho lg:text-lg font-bold">
-                                    Massas
-                                </p>
-                            </div>
-                        </div>
-                        <div className="h-36  p-2 flex flex-col gap-3 cursor-pointer">
-                            <div className="h-24">
-                                <img
-                                    className="rounded-lg aspect-auto" 
-                                    src="/src/assets/cardapio/guarnicoes.png" alt="Arroz" 
-                                    />
-                            </div>
-                            <div className="flex justify-center items-center">
-                                <p className="text-vinho lg:text-lg font-bold">
-                                    Guarnições
-                                </p>
-                            </div>
-                        </div>
-                        <div className="h-36  p-2 flex flex-col gap-3 cursor-pointer">
-                            <div className="h-24">
-                                <img
-                                    className="rounded-lg aspect-auto" 
-                                    src="/src/assets/cardapio/bebidas.png" alt="Bebidas" 
-                                    />
-                            </div>
-                            <div className="flex justify-center items-center">
-                                <p className="text-vinho lg:text-lg font-bold">
-                                    Bebidas
-                                </p>
-                            </div>
-                        </div>
-                        <div className="h-36  p-2 flex flex-col gap-3 cursor-pointer">
-                            <div className="h-24">
-                                <img
-                                    className="rounded-lg aspect-auto" 
-                                    src="/src/assets/cardapio/sobremesas.png" alt="Sanduíche de Brownie" 
-                                    />
-                            </div>
-                            <div className="flex justify-center items-center">
-                                <p className="text-vinho lg:text-lg font-bold">
-                                    Sobremesas
-                                </p>
-                            </div>
-                        </div>
+                        {filters.map(filter => <CardFilter {...filter} key={filter.id}/>)}
                     </div>
                 </div>
             </div>

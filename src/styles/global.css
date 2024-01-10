@@ -45,4 +45,12 @@
         background-image: url('/src/assets/historia.jpg');
         @apply bg-cover bg-no-repeat
     }
+
+    .btn-admin {
+        @apply px-3 py-2 bg-dourado rounded-lg font-semibold hover:opacity-75
+    }
+
+    .mobile-filter {
+        @apply items-center bg-dourado border-none rounded-tl-md rounded-tr-md flex font-bold h-10 justify-between py-0 px-10 relative
+    }
 }

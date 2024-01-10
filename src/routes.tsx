@@ -1,17 +1,17 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import NavBar from './components/NavBar'
 import DefaultPage from './components/DefaultPage'
 import Home from './pages/Home'
 import Sobre from './pages/Sobre'
 import Cardapio from './pages/Cardapio'
 import Unidades from './pages/Unidades'
-import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
+import AdminDefaultPage from './pages/Admin/AdminDefaultPage'
+import AdminProdutos from './pages/Admin/Produtos/AdminProdutos'
+import AdminFormProdutos from './pages/Admin/Produtos/AdminFormProduto'
 
 const AppRouter = () => {
     return (
         <BrowserRouter>
-            <NavBar />
             <Routes>
                 <Route path='/' element={<DefaultPage />}>
                     <Route index element={<Home />} />
@@ -19,8 +19,11 @@ const AppRouter = () => {
                     <Route path='cardapio' element={<Cardapio />} />
                     <Route path='unidades' element={<Unidades />} />
                 </Route>
+                <Route path='/admin' element={<AdminDefaultPage />}>
+                    <Route index element={<AdminProdutos />} />
+                    <Route path='produtos/novo' element={<AdminFormProdutos />} />
+                </Route>
             </Routes>
-            <Footer />
             <ScrollToTop />
         </BrowserRouter>
     )
