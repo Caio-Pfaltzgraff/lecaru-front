@@ -26,8 +26,8 @@ const AdminDefaultPage = () => {
                             <div className="flex items-center md:gap-8 lg:gap-12 xl:gap-16">
                                 <Link to="/admin" className="navLink text-sm lg:text-base">Produtos</Link>
                                 <Link to="produtos/novo" className="navLink text-sm lg:text-base">Novo Produto</Link>
-                                <Link to="subcategorias" className="navLink text-sm lg:text-base">Categorias</Link>
-                                <Link to="subcategorias/novo" className="navLink text-sm lg:text-base">Nova Categoria</Link>
+                                <Link to="subcategorias" className="navLink text-sm lg:text-base">SubCategorias</Link>
+                                <Link to="subcategorias/novo" className="navLink text-sm lg:text-base">Nova SubCategoria</Link>
                                 <Link to="restaurantes" className="navLink text-sm lg:text-base">Restaurantes</Link>
                                 <Link to="restaurantes/novo" className="navLink text-sm lg:text-base">Novo Restaurante</Link>
                             </div>
@@ -47,8 +47,8 @@ const AdminDefaultPage = () => {
                         <div className="flex flex-col gap-4 px-2 pt-2 pb-3 sm:px-3">
                             <Link to="/admin" className="navLinkMobile">Produtos</Link>
                             <Link to="produtos/novo" className="navLinkMobile">Novo Produto</Link>
-                            <Link to="categorias" className="navLinkMobile">SubCategorias</Link>
-                            <Link to="categorias/novo" className="navLinkMobile">Nova SubCategoria</Link>
+                            <Link to="subcategorias" className="navLinkMobile">SubCategorias</Link>
+                            <Link to="subcategorias/novo" className="navLinkMobile">Nova SubCategoria</Link>
                             <Link to="restaurantes" className="navLinkMobile">Restaurantes</Link>
                             <Link to="restaurantes/novo" className="navLinkMobile">Novo Restaurante</Link>
                         </div>

@@ -1,11 +1,11 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
+import { useState } from "react"
 import { FaPencil } from "react-icons/fa6"
+import { MdDelete, MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md"
 import { Link } from "react-router-dom"
-import { MdDelete, MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
-import { useState } from "react";
-import filtros from "../../../data/categoriesMenu.json"
+import filtros from '../../../data/categoriesMenu.json';
 
-const AdminProdutos = () => {
+const AdminSubCategories = () => {
     const [open, setOpen] = useState(false);
     const [filter, setFilter] = useState('');
     const filterName = filter && filtros.find(filtro => filtro.name === filter)?.name;
@@ -29,7 +29,7 @@ const AdminProdutos = () => {
                     onClick={() => setOpen(!open)}
                     onBlur={() => setOpen(false)}
                 >
-                    <span>{filterName || "Filtrar Por"}</span>
+                    <span>{filterName || "Filtrar Por Categoria"}</span>
                     {open ? <MdKeyboardArrowUp size={20} /> : <MdKeyboardArrowDown size={20} />}
                     <div className={`absolute left-0 flex-col top-full w-full gap-3 py-3 bg-dourado rounded-b-md ${open ? "flex" : "hidden"}`}>
                         <div 
@@ -53,7 +53,7 @@ const AdminProdutos = () => {
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell className="w-10/12" sx={{fontWeight: "bold"}}>Nome do Produto</TableCell>
+                            <TableCell className="w-10/12" sx={{fontWeight: "bold"}}>Nome da SubCategoria</TableCell>
                             <TableCell className="w-1/12" sx={{fontWeight: "bold"}}>Editar</TableCell>
                             <TableCell className="w-1/12" sx={{fontWeight: "bold"}}>Excluir</TableCell>
                         </TableRow>
@@ -61,7 +61,7 @@ const AdminProdutos = () => {
                     <TableBody>
                         <TableRow>
                             <TableCell>
-                                Filé Mignon com fritas e molho
+                                Bovinas
                             </TableCell>
                             <TableCell>
                                 <Link to={"/admin/produtos"}>
@@ -76,6 +76,24 @@ const AdminProdutos = () => {
                                 </button>
                             </TableCell>
                         </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                Suinas
+                            </TableCell>
+                            <TableCell>
+                                <Link to={"/admin/produtos"}>
+                                    <button className="text-lg text-blue-500 hover:bg-blue-50 p-2 rounded-full border-none">
+                                        <FaPencil />
+                                    </button>
+                                </Link>
+                            </TableCell>
+                            <TableCell>
+                                <button className="text-xl text-red-500 hover:bg-red-50 p-2 rounded-full border-none">
+                                    <MdDelete />
+                                </button>
+                            </TableCell>
+                        </TableRow>
+                        
                     </TableBody>
                 </Table>
             </TableContainer>
@@ -83,4 +101,4 @@ const AdminProdutos = () => {
     )
 }
 
-export default AdminProdutos
+export default AdminSubCategories

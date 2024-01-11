@@ -8,6 +8,8 @@ import ScrollToTop from './components/ScrollToTop'
 import AdminDefaultPage from './pages/Admin/AdminDefaultPage'
 import AdminProdutos from './pages/Admin/Produtos/AdminProdutos'
 import AdminFormProdutos from './pages/Admin/Produtos/AdminFormProduto'
+import AdminSubCategories from './pages/Admin/SubCategories/AdminSubCategories'
+import AdminFormSubCategories from './pages/Admin/SubCategories/AdminFormSubCategories'
 
 const AppRouter = () => {
     return (
@@ -22,6 +24,8 @@ const AppRouter = () => {
                 <Route path='/admin' element={<AdminDefaultPage />}>
                     <Route index element={<AdminProdutos />} />
                     <Route path='produtos/novo' element={<AdminFormProdutos />} />
+                    <Route path='subcategorias' element={<AdminSubCategories />} />
+                    <Route path='subcategorias/novo' element={<AdminFormSubCategories />} />
                 </Route>
             </Routes>
             <ScrollToTop />
