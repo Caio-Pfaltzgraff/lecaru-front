@@ -69,6 +69,7 @@ const AdminFormProdutos = () => {
                                     margin="dense"
                                     type="number"
                                     helperText="(Quantidade de pessoas, apenas números)"
+                                    inputProps={{min: "1", max: "10"}}
                                 />
 
                                 <FormControl 

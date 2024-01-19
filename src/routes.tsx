@@ -10,6 +10,8 @@ import AdminProdutos from './pages/Admin/Produtos/AdminProdutos'
 import AdminFormProdutos from './pages/Admin/Produtos/AdminFormProduto'
 import AdminSubCategories from './pages/Admin/SubCategories/AdminSubCategories'
 import AdminFormSubCategories from './pages/Admin/SubCategories/AdminFormSubCategories'
+import AdminRestaurantes from './pages/Admin/Restaurantes/AdminRestaurante'
+import AdminFormRestaurantes from './pages/Admin/Restaurantes/AdminFormRestaurantes'
 
 const AppRouter = () => {
     return (
@@ -26,6 +28,8 @@ const AppRouter = () => {
                     <Route path='produtos/novo' element={<AdminFormProdutos />} />
                     <Route path='subcategorias' element={<AdminSubCategories />} />
                     <Route path='subcategorias/novo' element={<AdminFormSubCategories />} />
+                    <Route path='restaurantes' element={<AdminRestaurantes />} />
+                    <Route path='restaurantes/novo' element={<AdminFormRestaurantes />} />
                 </Route>
             </Routes>
             <ScrollToTop />
