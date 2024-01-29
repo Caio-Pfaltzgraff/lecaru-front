@@ -41,7 +41,7 @@ const Home = () => {
                 <Title>
                     Sugestões da casa
                 </Title>
-                <div className="lg:flex lg:flex-wrap lg:gap-6">
+                <div className="grid justify-center sm:justify-normal sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 md:gap-6 2xl:gap-9">
                     <SugestionCard 
                         title="Nome do Prato"
                         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa."

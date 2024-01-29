@@ -8,24 +8,24 @@ interface Props {
 const SugestionCard = ({description, pricing, title, urlImage} : Props) => {
     
   return (
-    <div className="mt-8 lg:mt-0 flex gap-3 hover:bg-gray-200 cursor-pointer p-3 rounded-lg lg:flex-grow lg:w-96 lg:justify-center xl:max-w-md shadow-lg border transition-transform hover:scale-105 duration-500">
-        <div className="w-1/2">
+    <div className="grid grid-cols-2 p-1 max-w-sm lg:max-w-md 2xl:max-w-lg border rounded-md shadow-md cursor-pointer hover:bg-gray-200 hover:scale-105 transition-transform duration-500">
+        <div className="w/12">
             <img 
-                className="rounded-xl object-cover object-center w-full md:max-w-xs lg:w-full h-48 md:h-64 lg:h-52"
-                src={urlImage} alt="exemplo" 
+                className="rounded-lg aspect-square object-cover object-center w-full"
+                src={urlImage} alt={title} 
             />
         </div>
-        <div className="w-1/2 flex flex-col gap-2 md:justify-center">
-            <h3 className="text-xl font-titulo font-semibold md:text-2xl text-red-600 line-clamp-2">
+        <div className="w1/2 ml-2 flex flex-col gap-2 lg:gap-1 xl:gap-2">
+            <h3 className="font-titulo text-red-600 text-lg md:text-xl lg:text-lg xl:text-xl font-semibold line-clamp-2">
                 {title}
             </h3>
             <div>
-                <p className="text-sm font-medium line-clamp-5 md:text-base">
+                <p className="text-sm md:text-base lg:text-sm xl:text-base line-clamp-4">
                     {description}
                 </p>
             </div>
             <div>
-                <h6 className="text-emerald-500 font-semibold text-lg md:text-xl">
+                <h6 className="text-emerald-500 font-semibold md:text-lg xl:text-xl">
                    R$ {String(pricing.toFixed(2)).replace(".", ",")}
                 </h6>
             </div>
