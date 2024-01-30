@@ -12,6 +12,7 @@ import AdminSubCategories from './pages/Admin/SubCategories/AdminSubCategories'
 import AdminFormSubCategories from './pages/Admin/SubCategories/AdminFormSubCategories'
 import AdminRestaurantes from './pages/Admin/Restaurantes/AdminRestaurante'
 import AdminFormRestaurantes from './pages/Admin/Restaurantes/AdminFormRestaurantes'
+import NotFound from './pages/NotFound'
 
 const AppRouter = () => {
     return (
@@ -31,6 +32,7 @@ const AppRouter = () => {
                     <Route path='restaurantes' element={<AdminRestaurantes />} />
                     <Route path='restaurantes/novo' element={<AdminFormRestaurantes />} />
                 </Route>
+                <Route path='*' element={<NotFound />} />
             </Routes>
             <ScrollToTop />
         </BrowserRouter>
