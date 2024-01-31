@@ -1,17 +1,12 @@
-import { Box, Button, Container, FormControl, Input, InputAdornment, InputLabel, MenuItem, OutlinedInput, Paper, Select, TextField, Typography } from "@mui/material"
+import { Box, Button, Container, FormControl, Input, InputAdornment, InputLabel, MenuItem, OutlinedInput, Paper, Select, TextField, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
 import categories from '../../../data/categoriesMenu.json';
 import subcategories from '../../../data/subcategoriesMenu.json';
-import { useEffect, useState } from "react";
-
-interface Subcategory {
-    id: number
-    name: string
-    category: number
-}
+import ISubCategory from "../../../interfaces/ISubCategory";
 
 const AdminFormProdutos = () => {
-    const [category, setCategory] = useState("");
-    const [filteredOptions, setFilteredOptions] = useState<Subcategory[]>([])
+    const [filteredOptions, setFilteredOptions] = useState<ISubCategory[]>([])
+    const [category, setCategory] = useState<string>('');    
 
     useEffect(() => {
         const subCategoriesFiltered = subcategories.filter(subcategory => subcategory.category === Number(category))

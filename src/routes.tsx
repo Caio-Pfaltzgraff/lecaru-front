@@ -27,6 +27,7 @@ const AppRouter = () => {
                 <Route path='/admin' element={<AdminDefaultPage />}>
                     <Route index element={<AdminProdutos />} />
                     <Route path='produtos/novo' element={<AdminFormProdutos />} />
+                    <Route path='produtos/:id' element={<AdminFormProdutos />} />
                     <Route path='subcategorias' element={<AdminSubCategories />} />
                     <Route path='subcategorias/novo' element={<AdminFormSubCategories />} />
                     <Route path='restaurantes' element={<AdminRestaurantes />} />
