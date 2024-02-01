@@ -1,7 +1,21 @@
 import { Box, Button, Container, FormControl, InputLabel, MenuItem, OutlinedInput, Paper, Select, TextField, Typography } from "@mui/material"
 import categories from '../../../data/categoriesMenu.json';
+import React, { useState } from "react";
+import apiV1 from "../../../http";
 
 const AdminFormSubCategories = () => {
+    const [title, setTitle] = useState<string>('');
+    const [categoryId, setCategoryId] = useState<string>('');
+
+    const submitForm = (event: React.ChangeEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        apiV1.post('subcategories', {
+            "title": title,
+            "categoryId": categoryId
+        }).then(() => alert("Subcategoria cadastrada com sucesso!"));
+    }
+
     return (
         <>
             <Box>
@@ -9,12 +23,18 @@ const AdminFormSubCategories = () => {
                     <Container maxWidth='lg' sx={{my: 2}}>
                         <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', flexGrow: 1}}>
                             <Typography variant="h6" component="h1">Formulário de SubCategorias</Typography>
-                            <Box component="form" sx={{width: '100%', display: 'flex', flexDirection: 'column', gap: 2}}>
+                            <Box 
+                                component="form" 
+                                sx={{width: '100%', display: 'flex', flexDirection: 'column', gap: 2}}
+                                onSubmit={submitForm}
+                            >
                                 <TextField 
                                     label="Nome da SubCategoria"
                                     variant="standard"
                                     fullWidth
                                     margin="dense"
+                                    value={title}
+                                    onChange={(e) => setTitle(e.target.value)}
                                     required
                                 />
                                 <FormControl
@@ -26,6 +46,8 @@ const AdminFormSubCategories = () => {
                                     <Select
                                         defaultValue=""
                                         input={<OutlinedInput label="Categoria" />}
+                                        value={categoryId}
+                                        onChange={(e) => setCategoryId(e.target.value)}
                                     >
                                         {categories.map(category => (
                                             <MenuItem key={category.id} value={category.id}>

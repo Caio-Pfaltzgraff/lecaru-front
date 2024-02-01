@@ -1,14 +1,30 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { FaPencil } from "react-icons/fa6"
 import { MdDelete, MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md"
 import { Link } from "react-router-dom"
 import filtros from '../../../data/categoriesMenu.json';
+import ISubCategory from "../../../interfaces/ISubCategory"
+import apiV1 from "../../../http"
 
 const AdminSubCategories = () => {
+    const [subCategories, setSubCategories] = useState<ISubCategory[]>([]);
     const [open, setOpen] = useState(false);
     const [filter, setFilter] = useState('');
     const filterName = filter && filtros.find(filtro => filtro.name === filter)?.name;
+
+    useEffect(() => {
+        apiV1.get<ISubCategory[]>('subcategories')
+            .then(response => setSubCategories(response.data))
+    }, [])
+
+    const deleteSubCategory = (subCategoryToBeDeleted: ISubCategory) => {
+        apiV1.delete(`subcategories/${subCategoryToBeDeleted.id}`)
+            .then(() => {
+                const subCategoriesList = subCategories.filter((subCategory) => subCategory.id !== subCategoryToBeDeleted.id)
+                setSubCategories([...subCategoriesList])
+            })
+    }
 
     return (
         <>
@@ -59,41 +75,28 @@ const AdminSubCategories = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        <TableRow>
-                            <TableCell>
-                                Bovinas
-                            </TableCell>
-                            <TableCell>
-                                <Link to={"/admin/produtos"}>
-                                    <button className="text-lg text-blue-500 hover:bg-blue-50 p-2 rounded-full border-none">
-                                        <FaPencil />
+                        {subCategories.map((subCategory) => (
+                            <TableRow key={subCategory.id}>
+                                <TableCell>
+                                    {subCategory.title}
+                                </TableCell>
+                                <TableCell>
+                                    <Link to={`/admin/subcategorias/${subCategory.id}`}>
+                                        <button className="text-lg text-blue-500 hover:bg-blue-50 p-2 rounded-full border-none">
+                                            <FaPencil />
+                                        </button>
+                                    </Link>
+                                </TableCell>
+                                <TableCell>
+                                    <button 
+                                        className="text-xl text-red-500 hover:bg-red-50 p-2 rounded-full border-none"
+                                        onClick={() => deleteSubCategory(subCategory)}
+                                    >
+                                        <MdDelete />
                                     </button>
-                                </Link>
-                            </TableCell>
-                            <TableCell>
-                                <button className="text-xl text-red-500 hover:bg-red-50 p-2 rounded-full border-none">
-                                    <MdDelete />
-                                </button>
-                            </TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell>
-                                Suinas
-                            </TableCell>
-                            <TableCell>
-                                <Link to={"/admin/produtos"}>
-                                    <button className="text-lg text-blue-500 hover:bg-blue-50 p-2 rounded-full border-none">
-                                        <FaPencil />
-                                    </button>
-                                </Link>
-                            </TableCell>
-                            <TableCell>
-                                <button className="text-xl text-red-500 hover:bg-red-50 p-2 rounded-full border-none">
-                                    <MdDelete />
-                                </button>
-                            </TableCell>
-                        </TableRow>
-                        
+                                </TableCell>
+                            </TableRow>
+                        ))}
                     </TableBody>
                 </Table>
             </TableContainer>

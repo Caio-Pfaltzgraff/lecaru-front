@@ -168,7 +168,7 @@ const AdminFormProdutos = () => {
                                                 key={subcategory.id}
                                                 value={subcategory.id}
                                             >
-                                                {subcategory.name}
+                                                {subcategory.title}
                                             </MenuItem>
                                         ))}
                                     </Select>

@@ -1,6 +1,6 @@
 // import ISubCategory from "./ISubCategory";
 
-export default interface IProduto {
+export default interface IProduct {
   id: string;
   title: string;
   description: string;
