@@ -16,14 +16,14 @@ type AddresApi = {
 }
 
 const AdminFormRestaurantes = () => {
-    const [lunchOpenWeekdays, setLunchOpenWeekdays] = useState('');
-    const [lunchCloseWeekdays, setLunchCloseWeekdays] = useState('');
-    const [dinnerOpenWeekdays, setDinnerOpenWeekdays] = useState('');
-    const [dinnerCloseWeekdays, setDinnerCloseWeekdays] = useState('');
-    const [lunchOpenWeekends, setLunchOpenWeekends] = useState('');
-    const [lunchCloseWeekends, setLunchCloseWeekends] = useState('');
-    const [dinnerOpenWeekends, setDinnerOpenWeekends] = useState('');
-    const [dinnerCloseWeekends, setDinnerCloseWeekends] = useState('');
+    const [lunchOpenWeekdays, setLunchOpenWeekdays] = useState<string>('');
+    const [lunchCloseWeekdays, setLunchCloseWeekdays] = useState<string>('');
+    const [dinnerOpenWeekdays, setDinnerOpenWeekdays] = useState<string>('');
+    const [dinnerCloseWeekdays, setDinnerCloseWeekdays] = useState<string>('');
+    const [lunchOpenWeekends, setLunchOpenWeekends] = useState<string>('');
+    const [lunchCloseWeekends, setLunchCloseWeekends] = useState<string>('');
+    const [dinnerOpenWeekends, setDinnerOpenWeekends] = useState<string>('');
+    const [dinnerCloseWeekends, setDinnerCloseWeekends] = useState<string>('');
     const [cep, setCep] = useState<string>('');
     const [logradouro, setLogradouro] = useState<string>('');
     const [number, setNumber] = useState<string>('');
