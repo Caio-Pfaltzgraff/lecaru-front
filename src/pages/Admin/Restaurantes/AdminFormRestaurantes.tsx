@@ -1,6 +1,7 @@
 import { Box, Button, Container, Paper, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
+import apiV1 from "../../../http";
 
 type AddresApi = {
     cep: string;
@@ -75,7 +76,8 @@ const AdminFormRestaurantes = () => {
                 "number": Number(number)
             }
         }
-        console.log(formData)
+        
+        apiV1.post('restaurants', formData).then(() => alert("Restaurante cadastrado com sucesso!"));
         setLunchOpenWeekdays('')
         setLunchCloseWeekdays('')
         setDinnerOpenWeekdays('')

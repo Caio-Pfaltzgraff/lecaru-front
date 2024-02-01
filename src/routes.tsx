@@ -32,6 +32,7 @@ const AppRouter = () => {
                     <Route path='subcategorias/novo' element={<AdminFormSubCategories />} />
                     <Route path='restaurantes' element={<AdminRestaurantes />} />
                     <Route path='restaurantes/novo' element={<AdminFormRestaurantes />} />
+                    <Route path='restaurantes/:id' element={<AdminFormRestaurantes />} />
                 </Route>
                 <Route path='*' element={<NotFound />} />
             </Routes>
