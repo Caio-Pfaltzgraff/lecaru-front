@@ -1,12 +1,14 @@
 import { Box, Button, Container, FormControl, Input, InputAdornment, InputLabel, MenuItem, OutlinedInput, Paper, Select, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import categories from '../../../data/categoriesMenu.json';
-import subcategories from '../../../data/subcategoriesMenu.json';
 import apiV1 from "../../../http";
+import IProduct from "../../../interfaces/IProduct";
 import ISubCategory from "../../../interfaces/ISubCategory";
 
 const AdminFormProdutos = () => {
-    const [filteredOptions, setFilteredOptions] = useState<ISubCategory[]>([])
+    const [filteredOptions, setFilteredOptions] = useState<ISubCategory[]>([]);
+    const params = useParams();
     const [category, setCategory] = useState<string>('');  
     const [title, setTitle] = useState<string>('');  
     const [description, setDescription] = useState<string>('');  
@@ -14,12 +16,32 @@ const AdminFormProdutos = () => {
     const [size, setSize] = useState<string>('');  
     const [serving, setServing] = useState<string>('');  
     const [price, setPrice] = useState<string>('');  
-    const [subCategory, setSubCategory] = useState<string>('');  
+    const [subCategory, setSubCategory] = useState<string>('');
+    const [listSubcategories, setListSubcategories] = useState<ISubCategory[]>([]);
 
     useEffect(() => {
-        const subCategoriesFiltered = subcategories.filter(subcategory => subcategory.category === Number(category))
+        apiV1.get<ISubCategory[]>('subcategories').then((response) => setListSubcategories(response.data));
+    }, [])
+
+    useEffect(() => {
+        if(params.id) {
+            apiV1.get<IProduct>(`products/${params.id}`).then((response) => {
+                setTitle(response.data.title);
+                setDescription(response.data.description);
+                setPhoto(response.data.photo);
+                setSize(String(response.data.size));
+                setServing(String(response.data.serving));
+                setPrice(String(response.data.price));
+                setCategory(String(response.data.subCategory.categoryId));
+                setSubCategory(String(response.data.subCategory.id));
+            })
+        }
+    }, [params])
+
+    useEffect(() => {
+        const subCategoriesFiltered = listSubcategories.filter(subcategory => subcategory.categoryId === Number(category))
         setFilteredOptions(subCategoriesFiltered);
-    }, [category])
+    }, [category, listSubcategories])
 
     const submitForm = (event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -34,16 +56,19 @@ const AdminFormProdutos = () => {
             "category": category,
             "subCategoryId": Number(subCategory)
         }
-
-        apiV1.post('products', formData).then(() => alert("Produto cadastrado com Sucesso!"));
-        setTitle('');
-        setDescription('');
-        setPhoto('');
-        setSize('');
-        setServing('');
-        setPrice('');
-        setCategory('');
-        setSubCategory('');
+        if(params.id) {
+            apiV1.put(`products/${params.id}`, formData).then(() => alert("Produto atualizado com Sucesso!"));
+        } else {
+            apiV1.post('products', formData).then(() => alert("Produto cadastrado com Sucesso!"));
+            setTitle('');
+            setDescription('');
+            setPhoto('');
+            setSize('');
+            setServing('');
+            setPrice('');
+            setCategory('');
+            setSubCategory('');
+        }
     }
 
 

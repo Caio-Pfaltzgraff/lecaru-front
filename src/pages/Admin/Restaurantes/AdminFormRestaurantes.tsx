@@ -1,7 +1,9 @@
 import { Box, Button, Container, Paper, TextField, Typography } from "@mui/material";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import apiV1 from "../../../http";
+import IRestaurant from "../../../interfaces/IRestaurant";
 
 type AddresApi = {
     cep: string;
@@ -17,6 +19,7 @@ type AddresApi = {
 }
 
 const AdminFormRestaurantes = () => {
+    const params = useParams();
     const [lunchOpenWeekdays, setLunchOpenWeekdays] = useState<string>('');
     const [lunchCloseWeekdays, setLunchCloseWeekdays] = useState<string>('');
     const [dinnerOpenWeekdays, setDinnerOpenWeekdays] = useState<string>('');
@@ -34,6 +37,28 @@ const AdminFormRestaurantes = () => {
     const [ddd, setDdd] = useState<string>('');
     const [telephone, setTelephone] = useState<string>('');
 
+    useEffect(() => {
+        if(params.id) {
+            apiV1.get<IRestaurant>(`restaurants/${params.id}`).then((response) => {
+                setLunchOpenWeekdays(response.data.lunchOpenWeekdays);
+                setLunchCloseWeekdays(response.data.lunchCloseWeekdays);
+                setLunchOpenWeekends(response.data.lunchOpenWeekends);
+                setLunchCloseWeekends(response.data.lunchCloseWeekends);
+                setDinnerOpenWeekdays(response.data.dinnerOpenWeekdays);
+                setDinnerCloseWeekdays(response.data.dinnerCloseWeekdays);
+                setDinnerOpenWeekends(response.data.dinnerOpenWeekends);
+                setDinnerCloseWeekends(response.data.dinnerCloseWeekends);
+                setTelephone(response.data.telephone);
+                setCep(response.data.address.cep);
+                setLogradouro(response.data.address.logradouro);
+                setNumber(String(response.data.address.number));
+                setBairro(response.data.address.bairro);
+                setLocalidade(response.data.address.localidade);
+                setUf(response.data.address.uf);
+                setDdd(response.data.address.ddd);
+            })
+        }
+    }, [params])
 
     const findAddress = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const cepFormated = event.target.value.replace('-', '')
@@ -53,10 +78,11 @@ const AdminFormRestaurantes = () => {
         event.preventDefault();
         const cepReplaced = cep.replace("-", "")
         const cepFormated = cepReplaced.slice(0, 5) + '-' + cepReplaced.slice(5)
-        const phoneWithAreaCode = `(${ddd}) ${telephone.replace("-", "").slice(0, 5)}-${telephone.replace("-", "").slice(5)}`
+        const phoneFormated = `${telephone.replace("-", "").slice(0, 5)}-${telephone.replace("-", "").slice(5)}`
+        const isLocalidadeRjOrSp = (localidade.toLowerCase() === 'rio de janeiro' || localidade.toLowerCase() === 'são paulo') ? true : false
 
         const formData = {
-            "title": localidade,
+            "title": isLocalidadeRjOrSp ? bairro : localidade,
             "lunchOpenWeekdays": lunchOpenWeekdays,
             "lunchCloseWeekdays": lunchCloseWeekdays,
             "lunchOpenWeekends": lunchOpenWeekends,
@@ -65,7 +91,7 @@ const AdminFormRestaurantes = () => {
             "dinnerCloseWeekdays": dinnerCloseWeekdays,
             "dinnerOpenWeekends": dinnerOpenWeekends,
             "dinnerCloseWeekends": dinnerCloseWeekends,
-            "telephone": phoneWithAreaCode,
+            "telephone": phoneFormated,
             "address": {
                 "cep": cepFormated,
                 "logradouro": logradouro,
@@ -77,23 +103,27 @@ const AdminFormRestaurantes = () => {
             }
         }
         
-        apiV1.post('restaurants', formData).then(() => alert("Restaurante cadastrado com sucesso!"));
-        setLunchOpenWeekdays('')
-        setLunchCloseWeekdays('')
-        setDinnerOpenWeekdays('')
-        setDinnerCloseWeekdays('')
-        setLunchOpenWeekends('')
-        setLunchCloseWeekends('')
-        setDinnerOpenWeekends('')
-        setDinnerCloseWeekends('')
-        setCep('')
-        setLogradouro('')
-        setNumber('')
-        setBairro('')
-        setLocalidade('')
-        setDdd('')
-        setUf('')
-        setTelephone('')
+        if (params.id) {
+            apiV1.put(`restaurants/${params.id}`, formData).then(() => alert("Restaurante atualizado com sucesso!"));
+        } else {
+            apiV1.post('restaurants', formData).then(() => alert("Restaurante cadastrado com sucesso!"));
+            setLunchOpenWeekdays('');
+            setLunchCloseWeekdays('');
+            setDinnerOpenWeekdays('');
+            setDinnerCloseWeekdays('');
+            setLunchOpenWeekends('');
+            setLunchCloseWeekends('');
+            setDinnerOpenWeekends('');
+            setDinnerCloseWeekends('');
+            setCep('');
+            setLogradouro('');
+            setNumber('');
+            setBairro('');
+            setLocalidade('');
+            setDdd('');
+            setUf('');
+            setTelephone('');
+        }
     }
 
     return (
@@ -300,7 +330,7 @@ const AdminFormRestaurantes = () => {
                                         value={telephone}
                                         onChange={(e) => setTelephone(e.target.value)}
                                         id="telephone"
-                                        helperText="(apenas números, sem o ddd)"
+                                        helperText="(Sem o ddd)"
                                     />
                                     <input 
                                         className="hidden" 

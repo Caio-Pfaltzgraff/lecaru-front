@@ -1,4 +1,4 @@
-// import ISubCategory from "./ISubCategory";
+import ISubCategory from "./ISubCategory";
 
 export default interface IProduct {
   id: string;
@@ -9,5 +9,5 @@ export default interface IProduct {
   serving: number;
   price: number;
   category: string;
-  // subCategory: ISubCategory
+  subCategory: ISubCategory
 }
