@@ -1,9 +1,9 @@
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
-import { FaPencil } from "react-icons/fa6"
-import { Link } from "react-router-dom"
-import { MdDelete, MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { useEffect, useState } from "react";
-import filtros from "../../../data/categoriesMenu.json"
+import { FaPencil } from "react-icons/fa6";
+import { MdDelete, MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
+import { Link } from "react-router-dom";
+import filtros from "../../../data/categoriesMenu.json";
 import apiV1 from "../../../http";
 
 const AdminProdutos = () => {
@@ -16,7 +16,6 @@ const AdminProdutos = () => {
         apiV1.get<{id: string, title: string}[]>('products')
             .then(response => {
                 setProducts(response.data)
-                console.log(response.data)
             });
     }, [])
 

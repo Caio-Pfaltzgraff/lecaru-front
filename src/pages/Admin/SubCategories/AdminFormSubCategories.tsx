@@ -1,19 +1,39 @@
-import { Box, Button, Container, FormControl, InputLabel, MenuItem, OutlinedInput, Paper, Select, TextField, Typography } from "@mui/material"
+import { Box, Button, Container, FormControl, InputLabel, MenuItem, OutlinedInput, Paper, Select, TextField, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import categories from '../../../data/categoriesMenu.json';
-import React, { useState } from "react";
 import apiV1 from "../../../http";
+import ISubCategory from "../../../interfaces/ISubCategory";
 
 const AdminFormSubCategories = () => {
+    const params = useParams();
     const [title, setTitle] = useState<string>('');
     const [categoryId, setCategoryId] = useState<string>('');
 
+    useEffect(() => {
+        if(params.id) {
+            apiV1.get<ISubCategory>(`subcategories/${params.id}`).then((response) => {
+                setTitle(response.data.title);
+                setCategoryId(String(response.data.categoryId));
+            })
+        }
+    }, [params])
+
     const submitForm = (event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault();
-
-        apiV1.post('subcategories', {
-            "title": title,
-            "categoryId": categoryId
-        }).then(() => alert("Subcategoria cadastrada com sucesso!"));
+        if(params.id) {
+            apiV1.put(`subcategories/${params.id}`, {
+                "title": title,
+                "categoryId": categoryId
+            }).then(() => alert("Subcategoria atualizada com sucesso!"));
+        } else {
+            apiV1.post('subcategories', {
+                "title": title,
+                "categoryId": categoryId
+            }).then(() => alert("Subcategoria cadastrada com sucesso!"));
+            setTitle('');
+            setCategoryId('');
+        }
     }
 
     return (

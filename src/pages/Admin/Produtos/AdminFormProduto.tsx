@@ -2,8 +2,8 @@ import { Box, Button, Container, FormControl, Input, InputAdornment, InputLabel,
 import React, { useEffect, useState } from "react";
 import categories from '../../../data/categoriesMenu.json';
 import subcategories from '../../../data/subcategoriesMenu.json';
-import ISubCategory from "../../../interfaces/ISubCategory";
 import apiV1 from "../../../http";
+import ISubCategory from "../../../interfaces/ISubCategory";
 
 const AdminFormProdutos = () => {
     const [filteredOptions, setFilteredOptions] = useState<ISubCategory[]>([])
