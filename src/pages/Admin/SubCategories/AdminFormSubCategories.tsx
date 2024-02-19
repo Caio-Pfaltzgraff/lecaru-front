@@ -16,6 +16,9 @@ const AdminFormSubCategories = () => {
                 setTitle(response.data.title);
                 setCategoryId(String(response.data.categoryId));
             })
+        } else {
+            setTitle('');
+            setCategoryId('');
         }
     }, [params])
 

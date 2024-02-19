@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react"
-import { FaBars } from "react-icons/fa"
+import { useEffect, useState } from "react";
+import { FaBars } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
-import { Link, Outlet, useLocation } from "react-router-dom"
+import { Link, Outlet, useLocation } from "react-router-dom";
 
 const AdminDefaultPage = () => {
-    const [menuOpen, setMenuOpen] = useState(false);
+    const [menuOpen, setMenuOpen] = useState<boolean>(false);
     const location = useLocation()
     
     useEffect(() => {

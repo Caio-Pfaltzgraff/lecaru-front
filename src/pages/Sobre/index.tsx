@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import Button from '../../components/Button';
-import history from '../../data/history.json'
 import Title from '../../components/Title';
-import values from '../../data/restaurantValues.json'
-import Values from './Values';
+import history from '../../data/history.json';
+import values from '../../data/restaurantValues.json';
 import ItemDifferences from './ItemDifferences';
+import Values from './Values';
 
 const Sobre = () => {
-    const [exibeTudo, setExibeTudo] = useState(false)
+    const [exibeTudo, setExibeTudo] = useState<boolean>(false);
 
     const toggleExibeTudo = () => {
         setExibeTudo(!exibeTudo)

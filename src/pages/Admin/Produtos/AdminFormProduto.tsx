@@ -35,6 +35,15 @@ const AdminFormProdutos = () => {
                 setCategory(String(response.data.subCategory.categoryId));
                 setSubCategory(String(response.data.subCategory.id));
             })
+        } else {
+            setTitle('');
+            setDescription('');
+            setPhoto('');
+            setSize('');
+            setServing('');
+            setPrice('');
+            setCategory('');
+            setSubCategory('');
         }
     }, [params])
 

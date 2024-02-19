@@ -3,27 +3,37 @@ import { useEffect, useState } from "react"
 import { FaPencil } from "react-icons/fa6"
 import { MdDelete, MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md"
 import { Link } from "react-router-dom"
-import filtros from '../../../data/categoriesMenu.json';
-import ISubCategory from "../../../interfaces/ISubCategory"
+import filtros from '../../../data/categoriesMenu.json'
 import apiV1 from "../../../http"
+import ISubCategory from "../../../interfaces/ISubCategory"
 
 const AdminSubCategories = () => {
     const [subCategories, setSubCategories] = useState<ISubCategory[]>([]);
-    const [open, setOpen] = useState(false);
-    const [filter, setFilter] = useState('');
+    const [filteredSubCategories, setFilteredSubCategories] = useState<ISubCategory[]>([]);
+    const [open, setOpen] = useState<boolean>(false);
+    const [filter, setFilter] = useState<string>('');
     const filterName = filter && filtros.find(filtro => filtro.name === filter)?.name;
 
     useEffect(() => {
         apiV1.get<ISubCategory[]>('subcategories')
-            .then(response => setSubCategories(response.data))
+            .then(response => {
+                setSubCategories([...response.data])
+                setFilteredSubCategories([...response.data]);
+            })
     }, [])
 
     const deleteSubCategory = (subCategoryToBeDeleted: ISubCategory) => {
         apiV1.delete(`subcategories/${subCategoryToBeDeleted.id}`)
             .then(() => {
                 const subCategoriesList = subCategories.filter((subCategory) => subCategory.id !== subCategoryToBeDeleted.id)
-                setSubCategories([...subCategoriesList])
+                setSubCategories([...subCategoriesList]);
+                setFilteredSubCategories([...subCategoriesList]);
             })
+    }
+
+    const listByCategoryFilters = (categoryId: number) => {
+        const filteredSubcategories = subCategories.filter((subCategory) => subCategory.categoryId === categoryId);
+        setFilteredSubCategories([...filteredSubcategories]);
     }
 
     return (
@@ -33,6 +43,7 @@ const AdminSubCategories = () => {
                     <button 
                         className="btn-admin"
                         key={filtro.id}
+                        onClick={() => listByCategoryFilters(filtro.id)}
                     >
                         {filtro.name}
                     </button>
@@ -75,7 +86,7 @@ const AdminSubCategories = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {subCategories.map((subCategory) => (
+                        {filteredSubCategories.map((subCategory) => (
                             <TableRow key={subCategory.id}>
                                 <TableCell>
                                     {subCategory.title}

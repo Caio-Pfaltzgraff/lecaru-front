@@ -7,24 +7,36 @@ import filtros from "../../../data/categoriesMenu.json";
 import apiV1 from "../../../http";
 
 const AdminProdutos = () => {
-    const [products, setProducts] = useState<{id: string, title: string}[]>([]);
+    const [products, setProducts] = useState<{id: string, title: string, categoryId: number}[]>([]);
+    const [filteredProducts, setFilteredProducts] = useState<{id: string, title: string, categoryId: number}[]>([]);
     const [open, setOpen] = useState(false);
     const [filter, setFilter] = useState('');
     const filterName = filter && filtros.find(filtro => filtro.name === filter)?.name;
 
     useEffect(() => {
-        apiV1.get<{id: string, title: string}[]>('products')
+        apiV1.get<{id: string, title: string, categoryId: number}[]>('products')
             .then(response => {
-                setProducts(response.data)
+                setProducts([...response.data]);
+                setFilteredProducts([...response.data]);
             });
     }, [])
 
     const deleteProduct = (productToBeDeleted: {id: string, title: string}) => {
         apiV1.delete(`products/${productToBeDeleted.id}`)
-            .then(() => {
+            .then((response) => {
+                if(response.status === 409) {
+                    console.log("Entrou no if")
+                    return alert("Essa subcategoria não pode ser apagada!, pois há produtos registrados nela.")
+                }
                 const productsList = products.filter(product => product.id !== productToBeDeleted.id)
                 setProducts([...productsList])
             })
+    }
+
+    const listByProductsFilter = (productId: number) => {
+        const listFilteredProducts = products.filter((product) => product.categoryId === productId);
+        console.log(filteredProducts);
+        setFilteredProducts([...listFilteredProducts]);
     }
 
     return (
@@ -34,6 +46,7 @@ const AdminProdutos = () => {
                     <button 
                         className="btn-admin"
                         key={filtro.id}
+                        onClick={() => listByProductsFilter(filtro.id)}
                     >
                         {filtro.name}
                     </button>
@@ -76,7 +89,7 @@ const AdminProdutos = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {products.map((product) => (
+                        {filteredProducts.map((product) => (
                             <TableRow key={product.id}>
                                 <TableCell>
                                     {product.title}

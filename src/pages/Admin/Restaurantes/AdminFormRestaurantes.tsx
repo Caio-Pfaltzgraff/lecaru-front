@@ -57,6 +57,23 @@ const AdminFormRestaurantes = () => {
                 setUf(response.data.address.uf);
                 setDdd(response.data.address.ddd);
             })
+        } else {
+            setLunchOpenWeekdays('');
+            setLunchCloseWeekdays('');
+            setDinnerOpenWeekdays('');
+            setDinnerCloseWeekdays('');
+            setLunchOpenWeekends('');
+            setLunchCloseWeekends('');
+            setDinnerOpenWeekends('');
+            setDinnerCloseWeekends('');
+            setCep('');
+            setLogradouro('');
+            setNumber('');
+            setBairro('');
+            setLocalidade('');
+            setDdd('');
+            setUf('');
+            setTelephone('');
         }
     }, [params])
 
