@@ -2,6 +2,7 @@ import { Box, Button, Container, Paper, TextField, Typography } from "@mui/mater
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { toast } from "sonner";
 import apiV1 from "../../../http";
 import IRestaurant from "../../../interfaces/IRestaurant";
 
@@ -121,9 +122,9 @@ const AdminFormRestaurantes = () => {
         }
         
         if (params.id) {
-            apiV1.put(`restaurants/${params.id}`, formData).then(() => alert("Restaurante atualizado com sucesso!"));
+            apiV1.put(`restaurants/${params.id}`, formData).then(() => toast.success("Restaurante atualizado com sucesso!"));
         } else {
-            apiV1.post('restaurants', formData).then(() => alert("Restaurante cadastrado com sucesso!"));
+            apiV1.post('restaurants', formData).then(() => toast.success("Restaurante cadastrado com sucesso!"));
             setLunchOpenWeekdays('');
             setLunchCloseWeekdays('');
             setDinnerOpenWeekdays('');

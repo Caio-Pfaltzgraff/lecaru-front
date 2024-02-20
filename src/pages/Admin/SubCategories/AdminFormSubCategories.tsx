@@ -1,6 +1,7 @@
 import { Box, Button, Container, FormControl, InputLabel, MenuItem, OutlinedInput, Paper, Select, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { toast } from "sonner";
 import categories from '../../../data/categoriesMenu.json';
 import apiV1 from "../../../http";
 import ISubCategory from "../../../interfaces/ISubCategory";
@@ -28,12 +29,12 @@ const AdminFormSubCategories = () => {
             apiV1.put(`subcategories/${params.id}`, {
                 "title": title,
                 "categoryId": categoryId
-            }).then(() => alert("Subcategoria atualizada com sucesso!"));
+            }).then(() => toast.success("Subcategoria atualizada com sucesso!"));
         } else {
             apiV1.post('subcategories', {
                 "title": title,
                 "categoryId": categoryId
-            }).then(() => alert("Subcategoria cadastrada com sucesso!"));
+            }).then(() => toast.success("Subcategoria cadastrada com sucesso!"));
             setTitle('');
             setCategoryId('');
         }

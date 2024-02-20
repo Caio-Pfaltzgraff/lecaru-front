@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 import { Link, Outlet, useLocation } from "react-router-dom";
+import { Toaster } from "sonner";
 
 const AdminDefaultPage = () => {
     const [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -59,6 +60,7 @@ const AdminDefaultPage = () => {
             <main className="mt-5 mx-2 sm:mx-6 md:mx-12 lg:mx-24 xl:mx-52">
                 <Outlet />
             </main>
+            <Toaster richColors />
         </>
     )
 }

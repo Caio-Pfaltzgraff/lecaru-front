@@ -1,6 +1,7 @@
 import { Box, Button, Container, FormControl, Input, InputAdornment, InputLabel, MenuItem, OutlinedInput, Paper, Select, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { toast } from "sonner";
 import categories from '../../../data/categoriesMenu.json';
 import apiV1 from "../../../http";
 import IProduct from "../../../interfaces/IProduct";
@@ -66,9 +67,9 @@ const AdminFormProdutos = () => {
             "subCategoryId": Number(subCategory)
         }
         if(params.id) {
-            apiV1.put(`products/${params.id}`, formData).then(() => alert("Produto atualizado com Sucesso!"));
+            apiV1.put(`products/${params.id}`, formData).then(() => toast.success("Produto atualizado com Sucesso!"));
         } else {
-            apiV1.post('products', formData).then(() => alert("Produto cadastrado com Sucesso!"));
+            apiV1.post('products', formData).then(() => toast.success("Produto cadastrado com Sucesso!"));
             setTitle('');
             setDescription('');
             setPhoto('');
