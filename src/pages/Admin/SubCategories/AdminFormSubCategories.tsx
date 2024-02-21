@@ -1,15 +1,18 @@
-import { Box, Button, Container, FormControl, InputLabel, MenuItem, OutlinedInput, Paper, Select, TextField, Typography } from "@mui/material";
+import { Box, Button, Container, FormControl, FormHelperText, InputLabel, MenuItem, OutlinedInput, Paper, Select, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "sonner";
 import categories from '../../../data/categoriesMenu.json';
 import apiV1 from "../../../http";
+import IError from "../../../interfaces/IError";
 import ISubCategory from "../../../interfaces/ISubCategory";
 
 const AdminFormSubCategories = () => {
     const params = useParams();
     const [title, setTitle] = useState<string>('');
+    const [errorTitle, setErrorTitle] = useState<IError>({error: false, message: ''});
     const [categoryId, setCategoryId] = useState<string>('');
+    const [errorCategoryId, setErrorCategoryId] = useState<IError>({error: false, message: ''});
 
     useEffect(() => {
         if(params.id) {
@@ -23,8 +26,33 @@ const AdminFormSubCategories = () => {
         }
     }, [params])
 
+    function validateForm() {
+        setErrorTitle({error: false, message: ''})
+        setErrorCategoryId({error: false, message: ''})
+
+        if(title.length === 0) {
+            setErrorTitle({error: true, message: 'O campo é obrigatório'})
+            return false;
+        } else if(title.length < 3) {
+            setErrorTitle({error: true, message: 'O nome deve possuir 3 caracteres ou mais'})
+            return false;
+        }
+
+        if(categoryId.length === 0) {
+            setErrorCategoryId({error: true, message: 'O campo é obrigatório'});
+            return false;
+        }
+        return true;
+    }
+
     const submitForm = (event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault();
+
+        if(!validateForm()) {
+            toast.error("Preencha o formulário corretamente!");
+            return;
+        }
+
         if(params.id) {
             apiV1.put(`subcategories/${params.id}`, {
                 "title": title,
@@ -53,20 +81,21 @@ const AdminFormSubCategories = () => {
                                 onSubmit={submitForm}
                             >
                                 <TextField 
-                                    label="Nome da SubCategoria"
+                                    label="Nome da SubCategoria *"
                                     variant="standard"
                                     fullWidth
                                     margin="dense"
                                     value={title}
                                     onChange={(e) => setTitle(e.target.value)}
-                                    required
+                                    error={errorTitle.error}
+                                    helperText={errorTitle.error && errorTitle.message}
                                 />
                                 <FormControl
                                     fullWidth
                                     variant="standard"
-                                    required
+                                    error={errorCategoryId.error}
                                 >
-                                    <InputLabel className="ml-4">Categoria</InputLabel>
+                                    <InputLabel className="ml-4">Categoria *</InputLabel>
                                     <Select
                                         defaultValue=""
                                         input={<OutlinedInput label="Categoria" />}
@@ -79,6 +108,7 @@ const AdminFormSubCategories = () => {
                                             </MenuItem>
                                         ))}
                                     </Select>
+                                    {errorCategoryId.error && <FormHelperText>{errorCategoryId.message}</FormHelperText>}
                                 </FormControl>
                                     
                                 <Button

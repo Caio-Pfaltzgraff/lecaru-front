@@ -1,9 +1,11 @@
-import { Box, Button, Container, FormControl, Input, InputAdornment, InputLabel, MenuItem, OutlinedInput, Paper, Select, TextField, Typography } from "@mui/material";
+import { Box, Button, Container, FormControl, InputAdornment, InputLabel, MenuItem, OutlinedInput, Paper, Select, TextField, Typography } from "@mui/material";
+import FormHelperText from '@mui/material/FormHelperText';
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "sonner";
 import categories from '../../../data/categoriesMenu.json';
 import apiV1 from "../../../http";
+import IError from "../../../interfaces/IError";
 import IProduct from "../../../interfaces/IProduct";
 import ISubCategory from "../../../interfaces/ISubCategory";
 
@@ -11,13 +13,18 @@ const AdminFormProdutos = () => {
     const [filteredOptions, setFilteredOptions] = useState<ISubCategory[]>([]);
     const params = useParams();
     const [category, setCategory] = useState<string>('');  
+    const [errorsCategory, setErrorsCategory] = useState<IError>({error: false, message: ''});
     const [title, setTitle] = useState<string>('');  
+    const [errorsTitle, setErrorsTitle] = useState<IError>({error: false, message: ''});
     const [description, setDescription] = useState<string>('');  
     const [photo, setPhoto] = useState<string>('');  
+    const [errorsPhoto, setErrorsPhoto] = useState<IError>({error: false, message: ''});
     const [size, setSize] = useState<string>('');  
     const [serving, setServing] = useState<string>('');  
     const [price, setPrice] = useState<string>('');  
+    const [errorsPrice, setErrorsPrice] = useState<IError>({error: false, message: ''});
     const [subCategory, setSubCategory] = useState<string>('');
+    const [errorsSubCategory, setErrorsSubCategory] = useState<IError>({error: false, message: ''});
     const [listSubcategories, setListSubcategories] = useState<ISubCategory[]>([]);
 
     useEffect(() => {
@@ -53,8 +60,57 @@ const AdminFormProdutos = () => {
         setFilteredOptions(subCategoriesFiltered);
     }, [category, listSubcategories])
 
+    function validateForm() {
+        // resetar caso já tenha tido erros
+        setErrorsTitle({error: false, message: ''})
+        setErrorsPhoto({error: false, message: ''})
+        setErrorsPrice({error: false, message: ''})
+        setErrorsCategory({error: false, message: ''})
+        setErrorsSubCategory({error: false, message: ''})
+        
+        // validar title
+        if(title.length === 0) {
+            setErrorsTitle({error: true, message: 'O campo é obrigatório'})
+            return false;
+        } else if(title.length < 3) {
+            setErrorsTitle({error: true, message: 'O nome deve possuir 3 caracteres ou mais'})
+            return false;
+        }
+
+        //validar photo
+        if(photo.length === 0) {
+            setErrorsPhoto({error: true, message: 'O campo é obrigatório'})
+            return false;
+        }
+
+        // validar preço
+        if(price.length === 0) {
+            setErrorsPrice({error: true, message: 'O campo é obrigatório'})
+            return false;
+        }
+
+        // validar category
+        if(category.length === 0) {
+            setErrorsCategory({error: true, message: 'O campo é obrigatório'});
+            return false;
+        }
+        
+        //validar subcategory
+        if(subCategory.length === 0) {
+            setErrorsSubCategory({error: true, message: 'O campo é obrigatório'});
+            return false;
+        }
+
+        return true;
+    }
+
     const submitForm = (event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault();
+
+        if(!validateForm()) {
+            toast.error("Preencha o formulário corretamente!");
+            return;
+        }
 
         const formData = {
             "title": title,
@@ -95,13 +151,14 @@ const AdminFormProdutos = () => {
                                 onSubmit={submitForm}
                             >
                                 <TextField 
-                                    label="Nome do Produto"
+                                    label="Nome do Produto *"
                                     variant="standard"
                                     fullWidth
                                     margin="dense"
                                     value={title}
                                     onChange={(e) => setTitle(e.target.value)}
-                                    required
+                                    error={errorsTitle.error}
+                                    helperText={errorsTitle.error && errorsTitle.message}
                                 />
 
                                 <TextField 
@@ -114,13 +171,14 @@ const AdminFormProdutos = () => {
                                 />
 
                                 <TextField 
-                                    label="Link da Imagem"
+                                    label="Link da Imagem *"
                                     variant="standard"
                                     fullWidth
                                     margin="dense"
                                     value={photo}
                                     onChange={(e) => setPhoto(e.target.value)}
-                                    required
+                                    error={errorsPhoto.error}
+                                    helperText={errorsPhoto.error && errorsPhoto.message}
                                 />
 
                                 <TextField 
@@ -149,26 +207,26 @@ const AdminFormProdutos = () => {
                                     onChange={(e) => setServing(e.target.value)}
                                 />
 
-                                <FormControl 
+                                <TextField 
                                     fullWidth 
-                                    variant="standard" 
-                                    required
-                                >
-                                    <InputLabel>Preço</InputLabel>
-                                    <Input
-                                        type="number"
-                                        startAdornment={<InputAdornment position="start">R$</InputAdornment>}
-                                        value={price}
-                                        onChange={(e) => setPrice(e.target.value)}
-                                    />
-                                </FormControl>
+                                    label="Preço *"
+                                    variant="standard"
+                                    type="number"
+                                    InputProps={{
+                                        startAdornment: <InputAdornment position="start">R$</InputAdornment>,
+                                    }}
+                                    value={price}
+                                    onChange={(e) => setPrice(e.target.value)}
+                                    error={errorsPrice.error}
+                                    helperText={errorsPrice.error && errorsPrice.message}
+                                />
 
                                 <FormControl
                                     fullWidth
                                     variant="standard"
-                                    required
+                                    error={errorsCategory.error}
                                 >
-                                    <InputLabel className="ml-3">Categoria</InputLabel>
+                                    <InputLabel className="ml-3">Categoria *</InputLabel>
                                     <Select
                                         defaultValue=""
                                         input={<OutlinedInput label="Categoria" />}
@@ -184,14 +242,15 @@ const AdminFormProdutos = () => {
                                             </MenuItem>
                                         ))}
                                     </Select>
+                                    {errorsCategory.error && <FormHelperText>{errorsCategory.message}</FormHelperText>}
                                 </FormControl>
 
                                 <FormControl
                                     fullWidth
                                     variant="standard"
-                                    required
+                                    error={errorsSubCategory.error}
                                 >
-                                    <InputLabel className="ml-3">Subcategoria</InputLabel>
+                                    <InputLabel className="ml-3">Subcategoria *</InputLabel>
                                     <Select
                                         defaultValue=""
                                         input={<OutlinedInput label="Subcategoria" />}
@@ -207,6 +266,7 @@ const AdminFormProdutos = () => {
                                             </MenuItem>
                                         ))}
                                     </Select>
+                                    {errorsSubCategory.error && <FormHelperText>{errorsSubCategory.message}</FormHelperText>}
                                 </FormControl>
 
                                 <Button 

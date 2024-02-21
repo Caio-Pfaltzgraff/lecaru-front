@@ -23,13 +23,10 @@ const AdminProdutos = () => {
 
     const deleteProduct = (productToBeDeleted: {id: string, title: string}) => {
         apiV1.delete(`products/${productToBeDeleted.id}`)
-            .then((response) => {
-                if(response.status === 409) {
-                    console.log("Entrou no if")
-                    return alert("Essa subcategoria não pode ser apagada!, pois há produtos registrados nela.")
-                }
+            .then(() => {
                 const productsList = products.filter(product => product.id !== productToBeDeleted.id)
-                setProducts([...productsList])
+                setProducts([...productsList]);
+                setFilteredProducts([...productsList]);
             })
     }
 

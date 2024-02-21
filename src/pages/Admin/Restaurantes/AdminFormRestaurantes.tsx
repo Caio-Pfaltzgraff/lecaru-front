@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "sonner";
 import apiV1 from "../../../http";
+import IError from "../../../interfaces/IError";
 import IRestaurant from "../../../interfaces/IRestaurant";
 
 type AddresApi = {
@@ -22,21 +23,32 @@ type AddresApi = {
 const AdminFormRestaurantes = () => {
     const params = useParams();
     const [lunchOpenWeekdays, setLunchOpenWeekdays] = useState<string>('');
+    const [errorLunchOpenWeekdays, setErrorLunchOpenWeekdays] = useState<IError>({error: false, message: ''});
     const [lunchCloseWeekdays, setLunchCloseWeekdays] = useState<string>('');
+    const [errorLunchCloseWeekdays, setErrorLunchCloseWeekdays] = useState<IError>({error: false, message: ''});
     const [dinnerOpenWeekdays, setDinnerOpenWeekdays] = useState<string>('');
+    const [errorDinnerOpenWeekdays, setErrorDinnerOpenWeekdays] = useState<IError>({error: false, message: ''});
     const [dinnerCloseWeekdays, setDinnerCloseWeekdays] = useState<string>('');
+    const [errorDinnerCloseWeekdays, setErrorDinnerCloseWeekdays] = useState<IError>({error: false, message: ''});
     const [lunchOpenWeekends, setLunchOpenWeekends] = useState<string>('');
+    const [errorLunchOpenWeekends, setErrorLunchOpenWeekends] = useState<IError>({error: false, message: ''});
     const [lunchCloseWeekends, setLunchCloseWeekends] = useState<string>('');
+    const [errorLunchCloseWeekends, setErrorLunchCloseWeekends] = useState<IError>({error: false, message: ''});
     const [dinnerOpenWeekends, setDinnerOpenWeekends] = useState<string>('');
+    const [errorDinnerOpenWeekends, setErrorDinnerOpenWeekends] = useState<IError>({error: false, message: ''});
     const [dinnerCloseWeekends, setDinnerCloseWeekends] = useState<string>('');
+    const [errorDinnerCloseWeekends, setErrorDinnerCloseWeekends] = useState<IError>({error: false, message: ''});
     const [cep, setCep] = useState<string>('');
+    const [errorCep, setErrorCep] = useState<IError>({error: false, message: ''});
     const [logradouro, setLogradouro] = useState<string>('');
     const [number, setNumber] = useState<string>('');
+    const [errorNumber, setErrorNumber] = useState<IError>({error: false, message: ''});
     const [bairro, setBairro] = useState<string>('');
     const [localidade, setLocalidade] = useState<string>('');
     const [uf, setUf] = useState<string>('');
     const [ddd, setDdd] = useState<string>('');
     const [telephone, setTelephone] = useState<string>('');
+    const [errorTelephone, setErrorTelephone] = useState<IError>({error: false, message: ''});
 
     useEffect(() => {
         if(params.id) {
@@ -92,12 +104,97 @@ const AdminFormRestaurantes = () => {
         }
     }
 
+    function validateForm() {
+        setErrorLunchOpenWeekdays({error: false, message: ''})
+        setErrorLunchCloseWeekdays({error: false, message: ''})
+        setErrorDinnerOpenWeekdays({error: false, message: ''})
+        setErrorDinnerCloseWeekdays({error: false, message: ''})
+        setErrorLunchOpenWeekends({error: false, message: ''})
+        setErrorLunchCloseWeekends({error: false, message: ''})
+        setErrorDinnerOpenWeekends({error: false, message: ''})
+        setErrorDinnerCloseWeekends({error: false, message: ''})
+        setErrorCep({error: false, message: ''})
+        setErrorNumber({error: false, message: ''})
+        setErrorTelephone({error: false, message: ''})
+
+        if(lunchOpenWeekdays.length < 5) {
+            setErrorLunchOpenWeekdays({error: true, message: 'Campo obrigatório!'});
+            return false;
+        }
+
+        if (lunchCloseWeekdays.length < 5) {
+            setErrorLunchCloseWeekdays({error: true, message: 'Campo obrigatório!'});
+            return false;
+        }
+    
+        if (dinnerOpenWeekdays.length < 5) {
+            setErrorDinnerOpenWeekdays({error: true, message: 'Campo obrigatório!'});
+            return false;
+        }
+    
+        if (dinnerCloseWeekdays.length < 5) {
+            setErrorDinnerCloseWeekdays({error: true, message: 'Campo obrigatório!'});
+            return false;
+        }
+    
+        if (lunchOpenWeekends.length < 5) {
+            setErrorLunchOpenWeekends({error: true, message: 'Campo obrigatório!'});
+            return false;
+        }
+    
+        if (lunchCloseWeekends.length < 5) {
+            setErrorLunchCloseWeekends({error: true, message: 'Campo obrigatório!'});
+            return false;
+        }
+    
+        if (dinnerOpenWeekends.length < 5) {
+            setErrorDinnerOpenWeekends({error: true, message: 'Campo obrigatório!'});
+            return false;
+        }
+    
+        if (dinnerCloseWeekends.length < 5) {
+            setErrorDinnerCloseWeekends({error: true, message: 'Campo obrigatório!'});
+            return false;
+        }
+
+        if(cep.length === 0) {
+            setErrorCep({error: true, message: 'Campo obrigatório!'});
+            return false;
+        } else if(cep.length < 8 || uf.length === 0) {
+            setErrorCep({error: true, message: 'Digite um cep válido'});
+            return false;
+        }
+
+        if(number.length === 0) {
+            setErrorNumber({error: true, message: 'Campo obrigatório!'});
+            return false;
+        } else if(Number.isNaN(Number(number))) {
+            setErrorNumber({error: true, message: 'Apenas números'});
+            return false;
+        }
+
+        if(telephone.length === 0) {
+            setErrorTelephone({error: true, message: 'Campo obrigatório!'});
+            return false;
+        } else if(telephone.length < 8 || Number.isNaN(Number(telephone))) {
+            setErrorTelephone({error: true, message: 'Digite um número válido'});
+            return false;
+        }
+
+        return true;
+    }
+
     const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const cepReplaced = cep.replace("-", "")
         const cepFormated = cepReplaced.slice(0, 5) + '-' + cepReplaced.slice(5)
         const phoneFormated = `${telephone.replace("-", "").slice(0, 5)}-${telephone.replace("-", "").slice(5)}`
         const isLocalidadeRjOrSp = (localidade.toLowerCase() === 'rio de janeiro' || localidade.toLowerCase() === 'são paulo') ? true : false
+
+        if(!validateForm()) {
+            toast.error("Preencha o formulário corretamente!")
+            return;
+        }
 
         const formData = {
             "title": isLocalidadeRjOrSp ? bairro : localidade,
@@ -161,32 +258,36 @@ const AdminFormRestaurantes = () => {
                                         <p className="text-center sm:text-start">Horario de almoço nos dias de semana</p>
                                         <div className="flex items-center gap-3 sm:gap-6 justify-center sm:justify-normal">
                                             <div className="flex flex-col">
-                                                <label htmlFor="lunchOpenWeekdays">
+                                                <label htmlFor="lunchOpenWeekdays" className={`${errorLunchOpenWeekdays.error && 'text-red-500'}`}>
                                                     Abre
                                                 </label>
-                                                <input
-                                                    required 
+                                                <input 
                                                     type="time"
                                                     name="lunchOpenWeekdays"
                                                     id="lunchOpenWeekdays"
                                                     value={lunchOpenWeekdays}
                                                     onChange={(e) => setLunchOpenWeekdays(e.target.value)}
-                                                    className="border h-10 p-1 rounded-lg sm:w-28" 
+                                                    className={`border h-10 p-1 rounded-lg sm:w-28 ${errorLunchOpenWeekdays.error && 'border-red-600'}`}
                                                 />
+                                                {errorLunchOpenWeekdays.error && 
+                                                    <small className="text-red-500 text-[10px]">{errorLunchOpenWeekdays.message}</small>
+                                                }
                                             </div>
                                             <div className="flex flex-col">
-                                                <label htmlFor="lunchCloseWeekdays">
+                                                <label htmlFor="lunchCloseWeekdays" className={`${errorLunchCloseWeekdays.error && 'text-red-500'}`}>
                                                     Fecha
                                                 </label>
-                                                <input
-                                                    required 
+                                                <input 
                                                     type="time"
                                                     name="lunchCloseWeekdays"
                                                     id="lunchCloseWeekdays"
                                                     value={lunchCloseWeekdays}
                                                     onChange={(e) => setLunchCloseWeekdays(e.target.value)}
-                                                    className="border h-10 p-1 rounded-lg sm:w-28" 
+                                                    className={`border h-10 p-1 rounded-lg sm:w-28 ${errorLunchCloseWeekdays.error && 'border-red-600'}`} 
                                                 />
+                                                {errorLunchCloseWeekdays.error && 
+                                                    <small className="text-red-500 text-[10px]">{errorLunchCloseWeekdays.message}</small>
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -194,32 +295,36 @@ const AdminFormRestaurantes = () => {
                                         <p className="text-center sm:text-start">Horario de Jantar nos dias de semana</p>
                                         <div className="flex items-center gap-3 sm:gap-6 justify-center sm:justify-normal">
                                             <div className="flex flex-col">
-                                                <label htmlFor="dinnerOpenWeekdays">
+                                                <label htmlFor="dinnerOpenWeekdays" className={`${errorDinnerOpenWeekdays.error && 'text-red-500'}`}>
                                                     Abre
                                                 </label>
-                                                <input
-                                                    required 
+                                                <input 
                                                     type="time"
                                                     name="dinnerOpenWeekdays"
                                                     id="dinnerOpenWeekdays"
                                                     value={dinnerOpenWeekdays}
                                                     onChange={(e) => setDinnerOpenWeekdays(e.target.value)}
-                                                    className="border h-10 p-1 rounded-lg sm:w-28" 
+                                                    className={`border h-10 p-1 rounded-lg sm:w-28 ${errorDinnerOpenWeekdays.error && 'border-red-600'}`} 
                                                 />
+                                                {errorDinnerOpenWeekdays.error && 
+                                                    <small className="text-red-500 text-[10px]">{errorDinnerOpenWeekdays.message}</small>
+                                                }
                                             </div>
                                             <div className="flex flex-col">
-                                                <label htmlFor="dinnerCloseWeekdays">
+                                                <label htmlFor="dinnerCloseWeekdays" className={`${errorDinnerCloseWeekdays.error && 'text-red-500'}`}>
                                                     Fecha
                                                 </label>
-                                                <input
-                                                    required 
+                                                <input 
                                                     type="time"
                                                     name="dinnerCloseWeekdays"
                                                     id="dinnerCloseWeekdays"
                                                     value={dinnerCloseWeekdays}
                                                     onChange={(e) => setDinnerCloseWeekdays(e.target.value)}
-                                                    className="border h-10 p-1 rounded-lg sm:w-28" 
+                                                    className={`border h-10 p-1 rounded-lg sm:w-28 ${errorDinnerCloseWeekdays.error && 'border-red-600'}`} 
                                                 />
+                                                {errorDinnerCloseWeekdays.error && 
+                                                    <small className="text-red-500 text-[10px]">{errorDinnerCloseWeekdays.message}</small>
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -227,32 +332,36 @@ const AdminFormRestaurantes = () => {
                                         <p className="text-center sm:text-start">Horario de almoço nos finais de semana e feriados</p>
                                         <div className="flex items-center gap-3 sm:gap-6 justify-center sm:justify-normal">
                                             <div className="flex flex-col">
-                                                <label htmlFor="lunchOpenWeekends">
+                                                <label htmlFor="lunchOpenWeekends" className={`${errorLunchOpenWeekends.error && 'text-red-500'}`}>
                                                     Abre
                                                 </label>
-                                                <input
-                                                    required 
+                                                <input 
                                                     type="time"
                                                     name="lunchOpenWeekends"
                                                     id="lunchOpenWeekends"
                                                     value={lunchOpenWeekends}
                                                     onChange={(e) => setLunchOpenWeekends(e.target.value)}
-                                                    className="border h-10 p-1 rounded-lg sm:w-28" 
+                                                    className={`border h-10 p-1 rounded-lg sm:w-28 ${errorLunchOpenWeekends.error && 'border-red-600'}`} 
                                                 />
+                                                {errorLunchOpenWeekends.error && 
+                                                    <small className="text-red-500 text-[10px]">{errorLunchOpenWeekends.message}</small>
+                                                }
                                             </div>
                                             <div className="flex flex-col">
-                                                <label htmlFor="lunchCloseWeekends">
+                                                <label htmlFor="lunchCloseWeekends" className={`${errorLunchCloseWeekends.error && 'text-red-500'}`}>
                                                     Fecha
                                                 </label>
-                                                <input
-                                                    required 
+                                                <input 
                                                     type="time"
                                                     name="lunchCloseWeekends"
                                                     id="lunchCloseWeekends"
                                                     value={lunchCloseWeekends}
                                                     onChange={(e) => setLunchCloseWeekends(e.target.value)}
-                                                    className="border h-10 p-1 rounded-lg sm:w-28" 
+                                                    className={`border h-10 p-1 rounded-lg sm:w-28 ${errorLunchCloseWeekends.error && 'border-red-600'}`} 
                                                 />
+                                                {errorLunchCloseWeekends.error && 
+                                                    <small className="text-red-500 text-[10px]">{errorLunchCloseWeekends.message}</small>
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -260,49 +369,53 @@ const AdminFormRestaurantes = () => {
                                         <p className="text-center sm:text-start">Horario de jantar nos finais de semana e feriados</p>
                                         <div className="flex items-center gap-3 sm:gap-6 justify-center sm:justify-normal">
                                             <div className="flex flex-col">
-                                                <label htmlFor="dinnerOpenWeekends">
+                                                <label htmlFor="dinnerOpenWeekends" className={`${errorDinnerOpenWeekends.error && 'text-red-500'}`}>
                                                     Abre
                                                 </label>
-                                                <input
-                                                    required 
+                                                <input 
                                                     type="time"
                                                     name="dinnerOpenWeekends"
                                                     id="dinnerOpenWeekends"
                                                     value={dinnerOpenWeekends}
                                                     onChange={(e) => setDinnerOpenWeekends(e.target.value)}
-                                                    className="border h-10 p-1 rounded-lg sm:w-28" 
+                                                    className={`border h-10 p-1 rounded-lg sm:w-28 ${errorDinnerOpenWeekends.error && 'border-red-600'}`} 
                                                 />
+                                                {errorDinnerOpenWeekends.error && 
+                                                    <small className="text-red-500 text-[10px]">{errorDinnerOpenWeekends.message}</small>
+                                                }
                                             </div>
                                             <div className="flex flex-col">
-                                                <label htmlFor="dinnerCloseWeekends">
+                                                <label htmlFor="dinnerCloseWeekends" className={`${errorDinnerCloseWeekends.error && 'text-red-500'}`}>
                                                     Fecha
                                                 </label>
-                                                <input
-                                                    required 
+                                                <input 
                                                     type="time"
                                                     name="dinnerCloseWeekends"
                                                     id="dinnerCloseWeekends"
                                                     value={dinnerCloseWeekends}
                                                     onChange={(e) => setDinnerCloseWeekends(e.target.value)}
-                                                    className="border h-10 p-1 rounded-lg sm:w-28" 
+                                                    className={`border h-10 p-1 rounded-lg sm:w-28 ${errorDinnerCloseWeekends.error && 'border-red-600'}`} 
                                                 />
+                                                {errorDinnerCloseWeekends.error && 
+                                                    <small className="text-red-500 text-[10px]">{errorDinnerCloseWeekends.message}</small>
+                                                }
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="grid gap-3 md:grid-cols-2">
                                     <TextField 
-                                        required
                                         label="Cep"
                                         value={cep}
                                         name="cep"
                                         onChange={findAddress}
                                         variant="standard"
                                         margin="dense"
+                                        error={errorCep.error}
+                                        helperText={errorCep.error && errorCep.message}
                                     />
                                    <div className="md:mt-2">
                                         <TextField 
-                                            required
                                             fullWidth
                                             variant="standard"
                                             label="Logradouro"
@@ -313,16 +426,16 @@ const AdminFormRestaurantes = () => {
                                         />
                                    </div>
                                     <TextField 
-                                        required
                                         variant="standard"
                                         label="Número"
                                         name="number"
                                         type="number"
                                         value={number}
                                         onChange={(e) => setNumber(e.target.value)}
+                                        error={errorNumber.error}
+                                        helperText={errorNumber.error && errorNumber.message}
                                     />
                                     <TextField 
-                                        required
                                         variant="standard"
                                         label="Bairro"
                                         name="bairro"
@@ -331,7 +444,6 @@ const AdminFormRestaurantes = () => {
                                         disabled={cep.length > 7}
                                     />
                                     <TextField 
-                                        required
                                         variant="standard"
                                         label="Cidade"
                                         name="localidade"
@@ -341,14 +453,14 @@ const AdminFormRestaurantes = () => {
                                     />
 
                                     <TextField 
-                                        required
                                         variant="standard"
                                         label='Telefone'
                                         name="telephone"
                                         value={telephone}
                                         onChange={(e) => setTelephone(e.target.value)}
                                         id="telephone"
-                                        helperText="(Sem o ddd)"
+                                        error={errorTelephone.error}
+                                        helperText={errorTelephone.error ? errorTelephone.message : '(Sem o ddd)'}
                                     />
                                     <input 
                                         className="hidden" 
