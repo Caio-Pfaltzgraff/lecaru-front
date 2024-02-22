@@ -57,6 +57,10 @@ const AdminFormSubCategories = () => {
             apiV1.put(`subcategories/${params.id}`, {
                 "title": title,
                 "categoryId": categoryId
+            }); // Bug spring boot
+            apiV1.put(`subcategories/${params.id}`, {
+                "title": title,
+                "categoryId": categoryId
             }).then(() => toast.success("Subcategoria atualizada com sucesso!"));
         } else {
             apiV1.post('subcategories', {

@@ -219,6 +219,7 @@ const AdminFormRestaurantes = () => {
         }
         
         if (params.id) {
+            apiV1.put(`restaurants/${params.id}`, formData); // Bug spring boot
             apiV1.put(`restaurants/${params.id}`, formData).then(() => toast.success("Restaurante atualizado com sucesso!"));
         } else {
             apiV1.post('restaurants', formData).then(() => toast.success("Restaurante cadastrado com sucesso!"));

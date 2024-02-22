@@ -111,6 +111,8 @@ const AdminFormProdutos = () => {
             toast.error("Preencha o formulário corretamente!");
             return;
         }
+        const categoryName = categories.find(c => c.id === Number(category))?.name;
+        console.log(categoryName)
 
         const formData = {
             "title": title,
@@ -119,10 +121,13 @@ const AdminFormProdutos = () => {
             "size": Number(size),
             "serving": Number(serving),
             "price": Number(price),
-            "category": category,
+            "category": categoryName,
             "subCategoryId": Number(subCategory)
         }
+        console.log(formData)
+        console.log(params.id)
         if(params.id) {
+            apiV1.put(`products/${params.id}`, formData) // Bug spring boot
             apiV1.put(`products/${params.id}`, formData).then(() => toast.success("Produto atualizado com Sucesso!"));
         } else {
             apiV1.post('products', formData).then(() => toast.success("Produto cadastrado com Sucesso!"));
