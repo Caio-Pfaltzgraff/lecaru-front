@@ -20,6 +20,12 @@ export default {
         default: ['Inter', 'sans-serif'],
         title: ['Playfair Display', 'serif'],
         cursive: ['Allura', 'cursive']
+      },
+      backgroundImage: {
+        'home': "url('/banners/banner-home.png')",
+        'about': "url('/banners/banner-about.jpg')",
+        'units': "url('/banners/banner-units.jpg')",
+        'menu': "url('/banners/banner-menu.jpg')"
       }
     },
   },

@@ -12,7 +12,7 @@ export function NavBar() {
   }
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-lecaru-blue-dark md:border-b-2 md:border-lecaru-gold py-3 paddingPage">
+    <nav className="w-full bg-lecaru-blue-dark md:border-b-2 md:border-lecaru-gold py-3 paddingPage">
       <div className="flex justify-between items-center max-w-screen-xl mx-auto">
         <Link to='/'>
           <h1 className="text-lecaru-blue-light text-3xl font-medium font-title italic md:hover:logoShadow">Lecaru</h1>
