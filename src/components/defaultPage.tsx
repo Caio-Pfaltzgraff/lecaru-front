@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Banner } from "./banner";
+import { Footer } from "./footer";
 import { NavBar } from "./navBar";
 
 export function DefaultPage() {
@@ -12,6 +13,7 @@ export function DefaultPage() {
       <main>
         <Outlet />
       </main>
+      <Footer />
     </>
   )
 }

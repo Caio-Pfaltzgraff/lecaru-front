@@ -18,8 +18,9 @@ export default {
       },
       fontFamily: {
         default: ['Inter', 'sans-serif'],
-        title: ['Playfair Display', 'serif'],
-        cursive: ['Allura', 'cursive']
+        title: ['Merriweather', 'serif'],
+        cursive: ['Allura', 'cursive'],
+        logo: ['Playfair Display', 'serif']
       },
       backgroundImage: {
         'home': "url('/banners/banner-home.png')",
