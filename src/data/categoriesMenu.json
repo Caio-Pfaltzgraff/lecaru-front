@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Carnes",
+        "photo": "/menu/meat.jpg",
+        "alt": "Prato de carne"
+    },
+    {
+        "id": 2,
+        "name": "Petiscos",
+        "photo": "/menu/snacks.png",
+        "alt": "Prato com pastéis e molho"
+    },
+    {
+        "id": 3,
+        "name": "Massas",
+        "photo": "/menu/pastas.jpg",
+        "alt": "Prato de macarrão"
+    },
+    {
+        "id": 4,
+        "name": "Guarnições",
+        "photo": "/menu/garnishes.png",
+        "alt": "Prato de arroz"
+    },
+    {
+        "id": 5,
+        "name": "Bebidas",
+        "photo": "/menu/drinks.png",
+        "alt": "Copos com bebidas diversas"
+    },
+    {
+        "id": 6,
+        "name": "Sobremesas",
+        "photo": "/menu/desserts.png",
+        "alt": "Sanduíche de brownie"
+    }
+]

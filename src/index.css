@@ -10,7 +10,7 @@
 
 @layer components {
   .paddingPage {
-    @apply px-3 md:px-4 2xl:px-0
+    @apply px-3 md:px-4 xl:px-2 2xl:px-0
   }
 
   .logoShadow {

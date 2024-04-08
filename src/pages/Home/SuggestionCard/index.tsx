@@ -28,7 +28,7 @@ export function SuggestionCard({description, pricing, title, urlImage} : Props) 
         </div>
 
         <div>
-          <span className="text-green-500 font-semibold">
+          <span className="text-green-600 font-semibold">
             R$ {String(pricing.toFixed(2)).replace(".", ",")}
           </span>
         </div>
