@@ -12,10 +12,10 @@ export function NavBar() {
   }
 
   return (
-    <nav className="w-full bg-lecaru-blue-dark md:border-b-2 md:border-lecaru-gold py-3 xl:py-4 paddingPage">
+    <nav className="w-full bg-lecaru-blue-dark md:border-b-2 md:border-lecaru-gold py-4 paddingPage">
       <div className="flex justify-between items-center max-w-screen-xl mx-auto">
         <Link to='/'>
-          <h1 className="text-lecaru-blue-light text-3xl font-medium font-logo italic md:hover:logoShadow">Lecaru</h1>
+          <h1 className="text-lecaru-blue-light text-3xl lg:text-4xl font-medium font-logo italic md:hover:logoShadow">Lecaru</h1>
         </Link>
 
         <div className="md:hidden">
@@ -53,29 +53,33 @@ export function NavBar() {
         </div>
       </div>
       {menuOpen && (
-        <div className="h-screen w-full absolute md:hidden bg-lecaru-blue-dark">
+        <div className="h-screen w-full md:hidden bg-lecaru-blue-dark">
           <div className="flex flex-col justify-center items-center h-full gap-16">
             <Link 
               to="/" 
               className={`navLinkMobile ${location.pathname === '/' && 'text-lecaru-blue-light'}`}
+              onClick={() => handlerToggleMenu()}
             >
               Home
             </Link>
             <Link 
               to="/sobre" 
               className={`navLinkMobile ${location.pathname === '/sobre' && 'text-lecaru-blue-light'}`}
+              onClick={() => handlerToggleMenu()}
             >
               Sobre
             </Link>
             <Link 
               to="/cardapio" 
               className={`navLinkMobile ${location.pathname === '/cardapio' && 'text-lecaru-blue-light'}`}
+              onClick={() => handlerToggleMenu()}
             >
               Cardápio
             </Link>
             <Link 
               to="/unidades" 
               className={`navLinkMobile ${location.pathname === '/unidades' && 'text-lecaru-blue-light'}`}
+              onClick={() => handlerToggleMenu()}
             >
               Unidades
             </Link>
