@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "title": "Transparência",
+        "content": "Trocamos conhecimento e experiências de forma transparente, agregadora e humana. Isso resulta em relações de confiança mútua, possibilitando trabalhar com autonomia e alinhamento de expectativas."
+    },
+    {
+        "id": 2,
+        "title": "Respeito",
+        "content": "Essa é a nossa base de ação e a fórmula do sucesso para um time experiente e engajado. Ao demonstrarmos respeito ao alimento, à comunidade e à natureza, estamos completos."
+    },
+    {
+        "id": 3,
+        "title": "Idoneidade",
+        "content": "Nada passa despercebido aos olhos de quem alimenta com amor e cuidado. A comida servida nos restaurantes reflete o nosso compromisso com a honestidade e com processos corretos."
+    },
+    {
+        "id": 4,
+        "title": "Higiene",
+        "content": "Tão ou mais importante que o sabor é a entrega limpa e irretocável de nossos serviços. A higiene perpassa todos os setores e momentos via protocolos sanitários respeitados e melhorias contínuas nos processos."
+    },
+    {
+        "id": 5,
+        "title": "Sustentabilidade",
+        "content": "Está no nosso DNA a utilização racional dos recursos, produtos biodegradáveis, separação e destinação correta de resíduos."
+    }
+]
