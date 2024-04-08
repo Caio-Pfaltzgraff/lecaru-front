@@ -3,6 +3,7 @@ import { DefaultPage } from "./components/defaultPage";
 import { About } from "./pages/About";
 import { Home } from "./pages/Home";
 import { Menu } from "./pages/Menu";
+import { NotFound } from "./pages/NotFound";
 import { Units } from "./pages/Units";
 
 export function AppRouter() {
@@ -15,6 +16,8 @@ export function AppRouter() {
           <Route path='/cardapio' element={<Menu />} />
           <Route path='/unidades' element={<Units />} />
         </Route>
+
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   )
