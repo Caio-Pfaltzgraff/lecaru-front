@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { DefaultPage } from "./components/defaultPage";
+import { ScrollToTop } from "./components/scrollToTop";
 import { About } from "./pages/About";
 import { Home } from "./pages/Home";
 import { Menu } from "./pages/Menu";
@@ -19,6 +20,7 @@ export function AppRouter() {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <ScrollToTop />
     </BrowserRouter>
   )
 }
