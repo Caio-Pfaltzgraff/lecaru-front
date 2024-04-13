@@ -1,6 +1,7 @@
 import { LuChevronDown, LuChevronLeft, LuChevronRight, LuChevronsLeft, LuChevronsRight, LuListPlus, LuPencil, LuSlidersHorizontal, LuTrash2 } from "react-icons/lu";
 import { Button } from "../../components/admin/button";
 import { IconButton } from "../../components/admin/iconButton";
+import { LinkButton } from "../../components/admin/linkButton";
 import { Table } from "../../components/admin/table";
 import { TableCell } from "../../components/admin/table-cell";
 import { TableHeader } from "../../components/admin/table-header";
@@ -29,9 +30,9 @@ export function Subcategories() {
           <Button className="bg-lecaru-blue-dark text-white md:hidden">
             <LuSlidersHorizontal className="size-5"/> Filtrar <LuChevronDown className="Size-5"/>
           </Button>
-          <Button className="bg-green-600 text-white md:text-sm">
+          <LinkButton to="/admin/subcategorias/novo" className="bg-green-600 text-white md:text-sm">
             <LuListPlus className="size-5" />Nova Subcategoria
-          </Button>
+          </LinkButton>
         </div>
         <Table>
           <thead>

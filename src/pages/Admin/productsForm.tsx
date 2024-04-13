@@ -12,12 +12,12 @@ const schema = z.object({
   name: z
     .string()
     .min(1, "O nome é obrigatório.")
-    .min(3, "O nome preciss ter no mínimo 3 caracteres."),
+    .min(3, "O nome precisa ter no mínimo 3 caracteres."),
   description: z.string(),
   image: z
     .string()
     .min(1, "O link da imagem é obrigatório.")
-    .min(5, "O link da imagem preciss ter no mínimo 5 caracteres."),
+    .min(5, "O link da imagem precisa ter no mínimo 5 caracteres."),
   weight: z
     .string()
     .transform((weight) => (Number(weight) > 0 ? Number(weight) : null)),
@@ -53,7 +53,7 @@ export function ProductsForm() {
     <div className="max-w-screen-xl mx-auto paddingPage py-6 h-screen">
       <div className="max-w-screen-lg mx-auto">
         <div className="w-full flex justify-center items-center">
-          <div className="w-full bg-white border rounded-xl p-2 grid gap-6 my-6">
+          <div className="w-full bg-white border shadow-lg rounded-xl p-2 grid gap-6 my-6">
             <Title className="text-center">Formulário de Produto</Title>
             <form
               onSubmit={handleSubmit(handleSaveProduct)}

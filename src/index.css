@@ -6,6 +6,23 @@
   body {
     @apply font-default
   }
+
+  ::-webkit-scrollbar {
+    @apply w-3
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-zinc-500 rounded-xl
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-zinc-600
+  }
+
 }
 
 @layer components {

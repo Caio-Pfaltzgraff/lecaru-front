@@ -7,6 +7,7 @@ import { Products } from "./pages/Admin/products";
 import { ProductsForm } from "./pages/Admin/productsForm";
 import { Restaurants } from "./pages/Admin/restaurants";
 import { Subcategories } from './pages/Admin/subcategories';
+import { SubcategoriesForm } from "./pages/Admin/subcategoriesForm";
 import { Home } from "./pages/Home";
 import { Menu } from "./pages/Menu";
 import { NotFound } from "./pages/NotFound";
@@ -27,6 +28,7 @@ export function AppRouter() {
           <Route index element={<Products />} />
           <Route path="novo" element={<ProductsForm />} />
           <Route path='subcategorias' element={<Subcategories />} />
+          <Route path='subcategorias/novo' element={<SubcategoriesForm />} />
           <Route path='restaurantes' element={<Restaurants />} />
         </Route>
 
