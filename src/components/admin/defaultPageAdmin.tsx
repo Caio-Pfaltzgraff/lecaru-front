@@ -7,7 +7,7 @@ export function DefaultPageAdmin() {
       <header>
         <NavBar />
       </header>
-      <main className="mb-6">
+      <main>
         <Outlet />
       </main>
     </>

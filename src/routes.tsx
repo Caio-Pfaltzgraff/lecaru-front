@@ -4,6 +4,7 @@ import { DefaultPage } from "./components/defaultPage";
 import { ScrollToTop } from "./components/scrollToTop";
 import { About } from "./pages/About";
 import { Products } from "./pages/Admin/products";
+import { ProductsForm } from "./pages/Admin/productsForm";
 import { Restaurants } from "./pages/Admin/restaurants";
 import { Subcategories } from './pages/Admin/subcategories';
 import { Home } from "./pages/Home";
@@ -24,6 +25,7 @@ export function AppRouter() {
 
         <Route path='/admin' element={<DefaultPageAdmin />}>
           <Route index element={<Products />} />
+          <Route path="novo" element={<ProductsForm />} />
           <Route path='subcategorias' element={<Subcategories />} />
           <Route path='restaurantes' element={<Restaurants />} />
         </Route>
