@@ -3,6 +3,7 @@ import { Input } from "@nextui-org/input";
 import { ChangeEvent } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { LuSaveAll } from "react-icons/lu";
+import { Toaster, toast } from "sonner";
 import { z } from "zod";
 import { Button } from "../../components/admin/button";
 import { Title } from "../../components/title";
@@ -48,6 +49,7 @@ export function RestaurantsForm() {
 
   function handleSaveRestaurant(data: ProductSchema) {
     console.log(data);
+    toast.success("Restaurante salvo com sucesso!");
     reset();
   }
 
@@ -191,6 +193,7 @@ export function RestaurantsForm() {
           </div>
         </div>
       </div>
+      <Toaster richColors />
     </div>
   );
 }

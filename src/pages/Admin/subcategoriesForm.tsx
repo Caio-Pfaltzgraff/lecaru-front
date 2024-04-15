@@ -3,6 +3,7 @@ import { Input } from "@nextui-org/input";
 import { Select, SelectItem } from "@nextui-org/select";
 import { useForm } from "react-hook-form";
 import { LuSaveAll } from "react-icons/lu";
+import { Toaster, toast } from "sonner";
 import { z } from "zod";
 import { Button } from "../../components/admin/button";
 import { Title } from "../../components/title";
@@ -32,6 +33,7 @@ export function SubcategoriesForm() {
 
   function handleSaveSubcategorie(data: ProductSchema) {
     console.log(data);
+    toast.success("Subcategoria salva com sucesso!");
   }
 
   return (
@@ -81,6 +83,7 @@ export function SubcategoriesForm() {
           </div>
         </div>
       </div>
+      <Toaster richColors />
     </div>
   );
 }
