@@ -1,6 +1,6 @@
 import { LuChevronLeft, LuChevronRight, LuChevronsLeft, LuChevronsRight, LuListPlus, LuPencil, LuTrash2 } from "react-icons/lu";
-import { Button } from "../../components/admin/button";
 import { IconButton } from "../../components/admin/iconButton";
+import { LinkButton } from "../../components/admin/linkButton";
 import { Table } from "../../components/admin/table";
 import { TableCell } from "../../components/admin/table-cell";
 import { TableHeader } from "../../components/admin/table-header";
@@ -15,9 +15,9 @@ export function Restaurants() {
         <Title className="text-center md:text-start">Restaurantes</Title>
         <div className="w-full flex flex-col justify-center md:flex-row md:justify-between gap-4">
           <Search />
-          <Button className="bg-green-600 text-white md:text-sm">
+          <LinkButton to="/admin/restaurantes/novo" className="bg-green-600 text-white md:text-sm">
             <LuListPlus className="size-5" />Novo Restaurante
-          </Button>
+          </LinkButton>
         </div>
         
         <Table>

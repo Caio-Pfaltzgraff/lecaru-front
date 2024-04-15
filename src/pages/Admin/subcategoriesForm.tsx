@@ -30,7 +30,7 @@ export function SubcategoriesForm() {
     resolver: zodResolver(schema),
   });
 
-  function handleSaveProduct(data: ProductSchema) {
+  function handleSaveSubcategorie(data: ProductSchema) {
     console.log(data);
   }
 
@@ -41,7 +41,7 @@ export function SubcategoriesForm() {
           <div className="w-full bg-white shadow-lg border rounded-xl p-2 grid gap-6 my-6">
             <Title className="text-center">Formulário de Subcategoria</Title>
             <form
-              onSubmit={handleSubmit(handleSaveProduct)}
+              onSubmit={handleSubmit(handleSaveSubcategorie)}
               className="w-full grid gap-6"
             >
               <div>
